@@ -1,0 +1,74 @@
+import React, { useState, useEffect } from 'react';
+import { Card, Row, Col } from 'react-bootstrap';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+function SpecializariAccordionF({ facultateId }) {
+  const [specializari, setSpecializari] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/specializari')
+      .then(response => response.json())
+      .then(async specializariData => {
+        const specializariForFacultate = specializariData.filter(specializare => specializare.id_facultate === facultateId);
+
+        for (let specializare of specializariForFacultate) {
+          const ramuraResponse = await fetch(`/api/ramuri/${specializare.id_ramura}`);
+          const ramura = await ramuraResponse.json();
+
+          const domeniuResponse = await fetch(`/api/domenii/${ramura.id_domeniu}`);
+          const domeniu = await domeniuResponse.json();
+
+          specializare.ramura = ramura;
+          specializare.domeniu = domeniu;
+        }
+
+        setSpecializari(specializariForFacultate);
+      });
+  }, [facultateId]);
+
+  return (
+    <div>
+      {specializari.map((specializare, index) => (
+        <Card key={index} className="mb-1">
+        <Card.Body className="bg-light">
+          <Row>
+            <Col lg={3} className="my-auto">
+              <h5 className="card-title">
+                <a
+                  className="text-decoration-none w-100"
+                  href={`/specializare/${specializare.id}`}
+                >
+                  <small>Specializarea<br /></small> {specializare.nume}
+                </a>
+              </h5>
+            </Col>
+            <Col lg={4} className="bg-white">
+              <p className="my-3">
+                <a
+                  className="text-decoration-none w-100"
+                  href={`/domeniu/${specializare.domeniu.id}`}
+                >
+                  <i className="bi bi-stop"></i>  Domeniul {specializare.domeniu.nume}
+                </a>
+              </p>
+            </Col>
+            <Col lg={4} className="bg-white">
+              <p className="my-3">
+                <a
+                  className="text-decoration-none w-100"
+                  href={`/ramura/${specializare.ramura.id}`}
+                >
+                  <i className="bi bi-diagram-3"></i> Ramura {specializare.ramura.nume}
+                </a>
+              </p>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+      ))}
+    </div>
+  );
+}
+
+export default SpecializariAccordionF;
