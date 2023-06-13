@@ -173,7 +173,7 @@ const SearchResults = ({
               }}
               className='sticky-bottom pb-3'
             >
-              <Pagination style={{ marginInline: '26%' }}>
+              <Pagination style={{ marginInline: 'auto' }}>
                 <Pagination.First style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(1)} />
                 <Pagination.Prev style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(currentPage > 1 ? currentPage - 1 : 1)} />
 
