@@ -94,10 +94,11 @@ const SearchResults = ({
   const pages = Array.from({ length: (end - start + 1) }, (_, i) => start + i);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div className="search-results">
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+      <div className="search-results w-100">
 
         <InputGroup className="my-3" style={{ boxShadow: '0 0 15px 20px white' }}>
+          <InputGroup.Text id="basic-addon1"><i className="bi bi-search"></i></InputGroup.Text>
           <FormControl
             placeholder="Search..."
             aria-label="Search..."
