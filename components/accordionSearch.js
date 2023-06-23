@@ -20,7 +20,7 @@ export default function SearchFilters ({
 
     
     return (
-        <Accordion flush alwaysOpen className='mb-5'>
+        <Accordion alwaysOpen className='mb-5 mt-3'>
             <Accordion.Item eventKey="0">
                 <Accordion.Header>Domeniul fundamental de studiu</Accordion.Header>
                 <Accordion.Body style={{ maxHeight: '400px', overflow: 'auto' }}>

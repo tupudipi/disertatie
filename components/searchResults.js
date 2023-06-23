@@ -169,7 +169,8 @@ const SearchResults = ({
             <div
               style={{
                 width: '100%',
-                textAlign: 'center'
+                textAlign: 'center',
+                display: 'flex'
               }}
               className='sticky-bottom pb-3'
             >
@@ -177,28 +178,16 @@ const SearchResults = ({
                 <Pagination.First style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(1)} />
                 <Pagination.Prev style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(currentPage > 1 ? currentPage - 1 : 1)} />
 
-                {start > 1 ? (
-                  <Pagination.Ellipsis style={{ boxShadow: '0 0 20px 10px white' }} />
-                ) : (
-                  <Pagination.Ellipsis disabled style={{ boxShadow: '0 0 20px 10px white' }} />
-                )}
-
                 {pages.map(page => (
                   <Pagination.Item
                     key={page}
                     active={page === currentPage}
                     onClick={() => handlePageChange(page)}
-                    style={{ width: '50px', boxShadow: '0 0 20px 10px white' }}
+                    style={{ width: '40px', boxShadow: '0 0 20px 10px white' }}
                   >
                     {page}
                   </Pagination.Item>
                 ))}
-
-                {end < totalPages ? (
-                  <Pagination.Ellipsis style={{ boxShadow: '0 0 20px 10px white' }} />
-                ) : (
-                  <Pagination.Ellipsis disabled style={{ boxShadow: '0 0 20px 10px white' }} />
-                )}
 
                 <Pagination.Next style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(currentPage < totalPages ? currentPage + 1 : totalPages)} />
                 <Pagination.Last style={{ boxShadow: '0 0 20px 10px white' }} onClick={() => handlePageChange(totalPages)} />

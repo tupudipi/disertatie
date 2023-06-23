@@ -5,7 +5,13 @@ import getPool from '../../../lib/db';
 export default async function handler(req, res) {
   const pool = getPool();
 
-  const [rows, fields] = await pool.query('SELECT * FROM `specializari`');
-  
-  res.json(rows);
+  try {
+    const connection = await pool.getConnection();
+    const [rows, fields] = await connection.query('SELECT * FROM `specializari`');
+    connection.release();
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 }
