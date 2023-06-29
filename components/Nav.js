@@ -51,7 +51,7 @@ const MyNav = () => {
                 </Button>
               </div>
             </div>
-
+{/* 
             <div className="d-flex">
               <div className="mx-2">
                 <Button variant="outline-primary" className="rounded-pill border-2" disabled>
@@ -71,7 +71,7 @@ const MyNav = () => {
                   Admin
                 </Button>
               </div>
-            </div>
+            </div> */}
           </div>
 
         </Navbar.Collapse>
