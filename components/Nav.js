@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Navbar, Nav, Button, Modal, Container } from 'react-bootstrap';
-import RegistrationModal from './RegistratioModal';
-import LoginModal from './LoginModal';
+import NavButtons from './NavButtons';
 
 const MyNav = () => {
 
@@ -38,38 +37,7 @@ const MyNav = () => {
             </Nav.Item>
 
           </Nav>
-
-          <div className='d-flex flex-wrap justify-content-center'>
-            <div className="d-flex">
-              <div className="mx-2">
-                <LoginModal />
-              </div>
-              <div className="mx-2">
-                <RegistrationModal />
-              </div>
-            </div>
-{/* 
-            <div className="d-flex">
-              <div className="mx-2">
-                <Button variant="outline-primary" className="rounded-pill border-2" disabled>
-                  username
-                </Button>
-              </div>
-              <div className="mx-2">
-                <Button variant="outline-danger" className="rounded-pill border-2" href="includes/logout.php">
-                  Logout
-                </Button>
-              </div>
-            </div>
-
-            <div className="d-flex">
-              <div className="mx-2">
-                <Button variant="outline-dark" className="rounded-pill my-auto border-2" href="admin/index.php">
-                  Admin
-                </Button>
-              </div>
-            </div> */}
-          </div>
+          <NavButtons />
 
         </Navbar.Collapse>
       </Container>

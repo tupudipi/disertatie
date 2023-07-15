@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { signIn } from 'next-auth/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginModal = () => {
@@ -22,17 +21,16 @@ const LoginModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const result = await signIn('credentials', {
-            redirect: false,
-            username: formData.username,
-            password: formData.parola,
+        console.log(formData);
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
         });
 
-        if (result.error) {
-            alert(result.error);
-        } else {
-            handleClose();
-        }
+        const data = await response.json();
+        alert(data.message);
+        
     };
 
     return (
