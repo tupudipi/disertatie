@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const LoginModal = () => {
+
+const LoginModal = (props) => {
     const [show, setShow] = useState(false);
     const [formData, setFormData] = useState({
         username: '',
@@ -30,7 +31,11 @@ const LoginModal = () => {
 
         const data = await response.json();
         alert(data.message);
-        
+
+        if(response.status === 200) {
+            console.log('Fetching current user data...');
+            props.onLogin();
+        }
     };
 
     return (

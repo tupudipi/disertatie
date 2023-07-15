@@ -4,7 +4,7 @@ import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const RegistrationModal = () => {
+const RegistrationModal = (props) => {
     const [show, setShow] = useState(false);
     const [errors, setErrors] = useState([]);
     const [success, setSuccess] = useState([]);
@@ -102,6 +102,9 @@ const RegistrationModal = () => {
         } else {
             const error = await response.text();
             setErrors([error]);
+        }
+        if(response.status === 200){
+            props.onRegister();
         }
     };
 
