@@ -1,6 +1,6 @@
 // pages/api/currentuser.js
-
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import getPool from '../../lib/db';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -8,17 +8,40 @@ export default async function handler(req, res) {
     }
 
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
-        const email = user.email;
-        // Add any other user properties you're interested in here
-        return res.status(200).json({ user: { uid, email }});
-      } else {
-        // User is signed out
-        return res.status(401).json({ message: 'User is not signed in' });
-      }
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            const email = user.email;
+            
+            // fetch user details from database
+            const pool = getPool();
+            let connection;
+            try {
+                connection = await pool.getConnection();
+                const [rows] = await connection.query('SELECT * FROM `users` WHERE `email` = ?', [email]);
+                const userDetails = rows[0]; // Get the first result
+
+                if (!userDetails) {
+                    // No user found in database with the given email
+                    return res.status(404).json({ message: 'User not found' });
+                }
+
+                // Add any other user properties you're interested in here
+                return res.status(200).json({ user: { ...userDetails }});
+            } catch (error) {
+                console.error(error);
+                return res.status(500).json({ message: 'Internal server error' });
+            } finally {
+                if (connection) {
+                    connection.release();
+                }
+            }
+
+        } else {
+            // User is signed out
+            return res.status(401).json({ message: 'User is not signed in' });
+        }
     });
 }

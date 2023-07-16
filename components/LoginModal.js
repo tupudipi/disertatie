@@ -30,11 +30,12 @@ const LoginModal = (props) => {
         });
 
         const data = await response.json();
-        alert(data.message);
+        // alert(data.message);
 
         if(response.status === 200) {
             console.log('Fetching current user data...');
             props.onLogin();
+            location.reload()
         }
     };
 

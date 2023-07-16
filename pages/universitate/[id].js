@@ -4,7 +4,7 @@ import { Accordion, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyNav from '../../components/Nav';
 import Footer from '../../components/Footer';
-import FacultatiAccordion from '../../components/FacultatiAccordion';
+import FacultatiAccordionU from '../../components/FacultatiAccordionU';
 
 function UniversitatePage() {
   const [universitate, setUniversitate] = useState({});
@@ -35,8 +35,8 @@ function UniversitatePage() {
       }}>
         <Container fluid="lg">
           <h1 className='page-header display-3'>{universitate.nume}</h1><hr></hr>
-          <h5 className='text-body-secondary'>Facultăți în universitatea {universitate.nume}:</h5>
-          <FacultatiAccordion universitateId={universitate.id} />
+          <h5 className='text-body-secondary'>Facultăți cuprinse în {universitate.nume}:</h5>
+          <FacultatiAccordionU universitateId={universitate.id} />
         </Container>
         <hr></hr>
       </main>
