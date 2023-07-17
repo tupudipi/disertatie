@@ -8,35 +8,68 @@ function Chat() {
   const [message, setMessage] = useState("");
   const [conversation, setConversation] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [quizResults, setQuizResults] = useState(null);
+  const [dataFetched, setDataFetched] = useState(false);  // new state
+
+  const fetchCurrentUser = async () => {
+    const response = await fetch('/api/currentUser');
+    if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+
+        if (data.user) {
+          const quizResultsResponse = await fetch(`/api/quizResults/${data.user.email}`);
+          if (quizResultsResponse.ok) {
+            const quizResultsData = await quizResultsResponse.json();
+            setQuizResults(quizResultsData);
+          } else {
+            setQuizResults(null);
+          }
+        }
+    } else {
+        setUser(null);
+        setQuizResults(null);
+    }
+    setDataFetched(true);
+  };
 
   useEffect(() => {
-    // Fetch the initial message from the assistant when the component mounts
-    const fetchInitialMessage = async () => {
-      setIsLoading(true);
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message: 'start' }) // This can be an empty string or some keyword to indicate initial message
-      });
-
-      const { message: assistantMessage } = await res.json();
-
-      // Add assistant's message to the conversation
-      setConversation([{ role: 'assistant', content: assistantMessage }]);
-      setIsLoading(false);
-    };
-    fetchInitialMessage();
+    fetchCurrentUser(); 
   }, []);
+
+  useEffect(() => {
+    if(dataFetched) {
+        fetchInitialMessage();
+    }
+  }, [dataFetched]);
+
+  const fetchInitialMessage = async () => {
+    setIsLoading(true);
+    let message = 'start';
+    
+    if(user && quizResults) {
+      message = `Utilizatorul ${user.username} a parcurs deja chestionarul si a primit recomandarile: ${JSON.stringify(quizResults)}. start`;
+    }
+
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: message })
+    });
+
+    const { message: assistantMessage } = await res.json();
+
+    setConversation([{ role: 'assistant', content: assistantMessage }]);
+    setIsLoading(false);
+  };
 
   async function submitMessage(e) {
     e.preventDefault();
 
-    // Disable input during API call
     setIsLoading(true);
-
-    // Add user's message to the conversation immediately
     setConversation([...conversation, { role: 'user', content: message }]);
 
     const res = await fetch('/api/chat', {
@@ -48,15 +81,11 @@ function Chat() {
     });
 
     const { message: assistantMessage } = await res.json();
-
-    // Add assistant's message to the conversation
     setConversation(convo => [...convo, { role: 'assistant', content: assistantMessage }]);
 
-    // Enable input after API call
     setIsLoading(false);
     setMessage("");
   }
-
 
   return (
     <div>
@@ -100,7 +129,6 @@ function Chat() {
                   <Button type="submit" disabled={isLoading}>
                     {isLoading ? <Spinner size="sm" animation="border" /> : 'Trimite'}
                   </Button>
-
                 </InputGroup>
               </Form>
             </Col>
@@ -113,4 +141,3 @@ function Chat() {
 }
 
 export default Chat;
-

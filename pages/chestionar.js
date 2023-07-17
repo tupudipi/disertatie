@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, ProgressBar, ButtonGroup, Button } from 'react-bootstrap';
 import MyNav from '../components/Nav';
 import Footer from '../components/Footer';
@@ -162,6 +162,24 @@ export default function Questionnaire() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [domainScores, setDomainScores] = useState({});
   const [branchScores, setBranchScores] = useState({});
+  const [user, setUser] = useState(null);
+
+    const fetchCurrentUser = async () => {
+        const response = await fetch('/api/currentUser');
+        if (response.ok) {
+            const data = await response.json();
+            // console.log(`Current user is: ${data.user}`); 
+            setUser(data.user); // update state with user data
+        } else {
+            // Handle error here
+            // console.log('Failed to fetch current user');
+            setUser(null);
+        }
+    };
+
+    useEffect(() => {
+      fetchCurrentUser(); // fetch the current user when the component mounts
+  }, []);
 
   const currentQuestionData = questions[currentQuestionIndex];
 
@@ -198,8 +216,27 @@ export default function Questionnaire() {
     // Sortăm ramurile după scorul lor și luăm primele 5
     const recommendedBranches = Object.keys(branchScores).sort((a, b) => branchScores[b] - branchScores[a]).slice(0, 5);
 
-    // Afișăm rezultatele
-    alert(`Domeniu recomandat: ${recommendedDomain}\nRamuri recomandate: ${recommendedBranches.join(', ')}`);
+    const rezultateChestionar = `Domeniu recomandat: ${recommendedDomain}\nRamuri recomandate: ${recommendedBranches.join(', ')}`;
+
+    // Salvăm rezultatele în baza de date
+    if(user){
+      const data = {
+        email: user.email,
+        domain: recommendedDomain,
+        branches: recommendedBranches.join(', ')
+      };
+      //console.log(data);
+      //console.log(JSON.stringify(data));
+      fetch('/api/insertQuizResults', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    }
+
+    alert(rezultateChestionar + (user ? '\nRezultatele au fost salvate în baza de date.' : '\nNu sunteți autentificat. Rezultatele nu au fost salvate în baza de date.'));
   };
 
   return (
