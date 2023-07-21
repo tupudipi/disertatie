@@ -89,16 +89,17 @@ function Chat() {
 
   return (
     <div>
-      <main className='vh-100 d-flex flex-column' style={{
+      <main className='d-flex flex-column' style={{
         paddingTop: '0px',
         position: 'relative',
         zIndex: '1',
         marginBottom: '140px',
         backgroundColor: 'white',
+        minHeight: '100vh'
       }}>
         <MyNav />
         <Container className="flex-grow-1 d-flex flex-column">
-          <div className="flex-grow-1" style={{ overflowY: "auto", overflowX: "hidden" }}>
+          <div className="flex-grow-1" style={{ overflowY: "scroll", overflowX: "hidden" }}>
             {conversation.map((msg, index) => (
               <Row className="my-2">
                 <Col xs={10} className={`${msg.role === 'assistant' ? '' : 'offset-1'}`}>
@@ -114,9 +115,9 @@ function Chat() {
             ))}
           </div>
 
-          <Row className="my-3">
+          <Row className="my-3 sticky-bottom">
             <Col>
-              <Form onSubmit={submitMessage}>
+              <Form onSubmit={submitMessage} className='my-3' style={{ boxShadow: '0 0 20px 10px white' }}>
                 <InputGroup>
                   <Form.Control
                     as="textarea"
