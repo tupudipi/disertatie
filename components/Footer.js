@@ -19,7 +19,7 @@ const Footer = () => {
           }}>
             <footer>
                 <p>
-                    <em><strong>„Platformă web pentru asistarea deciziilor în procesul de alegere a specializării de admitere”</strong></em>
+                    <em><strong>„Sistem de asistare a deciziilor în procesul de alegere a specializării de admitere, bazat pe un model lingvistic”</strong></em>
                 </p>
             </footer>
         </div>
