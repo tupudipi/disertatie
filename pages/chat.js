@@ -42,7 +42,7 @@ function Chat() {
     if(dataFetched) {
         fetchInitialMessage();
     }
-  }, [dataFetched, fetchInitialMessage]);
+  }, [dataFetched]);
 
   const fetchInitialMessage = async () => {
     setIsLoading(true);
