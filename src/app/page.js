@@ -77,7 +77,7 @@ const HomePage = () => {
                                 <Col>
                                     <Link href="/domenii">
                                         <a><Button variant="primary" size="lg" className="rounded-pill">Căutare după domeniu</Button></a>
-                                    </Link href="/regiuni">
+                                    </Link>
                                 </Col>
                                 <Col>
                                     <Link href="/regiuni">
