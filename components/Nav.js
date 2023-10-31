@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navbar, Nav, Button, Modal, Container } from 'react-bootstrap';
 import NavButtons from './NavButtons';
+import Image from 'next/image';
 
 const MyNav = () => {
 
@@ -12,7 +13,7 @@ const MyNav = () => {
     <Navbar bg="light" expand="lg" className="sticky-top">
       <Container fluid>
         <Navbar.Brand href="#">
-          <img src="./images/icon.png" alt="icon" width="35" height="35" />
+          <Image src="/images/icon.png" alt="icon" width={35} height={35} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="border-bottom">

@@ -5,6 +5,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const HomePage = () => {
     return (
@@ -21,7 +23,7 @@ const HomePage = () => {
                 <Container fluid className="mb-5 shadow pt-5">
                     <Row>
                         <Col lg={6} className="text-center">
-                            <img src='/images/education.svg' alt="" className="mw-100" />
+                            <Image src="/images/education.svg" alt="" className="mw-100" />
                         </Col>
                         <Col lg className="text-center my-auto">
                             <h3 className="p-3 display-6">Cauți un program de studii de licență potrivit exact preferințelor tale?</h3>
@@ -35,11 +37,15 @@ const HomePage = () => {
                         <Col lg={6} className="text-center my-auto">
                             <h3 className="p-3 display-6 font-weight-bold">Dacă nu ești sigur ce opțiuni ți se potrivesc cel mai bine, încearcă chestionarul nostru orientativ.</h3>
                             <Row className="mt-3 mb-4 justify-content-center">
-                                <a href='/chestionar'><Button variant="primary" size="lg" className="rounded-pill">Începe Chestionarul</Button></a>
+                            <Link href="/chestionar">
+                                  <a>
+                                        <Button variant="primary" size="lg" className="rounded-pill">Începe Chestionarul</Button>
+                                  </a>
+                            </Link>
                             </Row>
                         </Col>
                         <Col className="text-center">
-                            <img src="/images/chestionar.svg" alt="Questionnaire Illustration" className="mw-100" />
+                            <Image src="/images/chestionar.svg" alt="Questionnaire Illustration" className="mw-100" />
                         </Col>
                     </Row>
                 </Container>
@@ -47,11 +53,17 @@ const HomePage = () => {
                 <Container fluid className="mb-5 shadow">
                     <Row>
                         <Col lg={6} className="text-center">
-                            <img src="/images/chatbot.svg" alt="AI Chat Illustration" className="mw-100" />
+                            <Image src="/images/chatbot.svg" alt="AI Chat Illustration" className="mw-100" />
                         </Col>
                         <Col lg className="text-center my-auto">
                             <h3 className="p-3 display-6 font-weight-bold">Apoi vorbește cu consilierul nostru educațional digital, care utilizează tehnologia AI pentru a oferi sfaturi personalizate:</h3>
-                            <a href='/chat'><Button variant="outline-primary" size="lg" className="rounded-pill mb-3">Chat cu Consilierul AI</Button></a>
+                            <Link href="/chat">
+                              <a>
+                                <Button variant="outline-primary" size="lg" className="rounded-pill mb-3">
+                                  Chat cu Consilierul AI
+                                </Button>
+                              </a>
+                            </Link>
                         </Col>
                     </Row>
                 </Container>
@@ -63,15 +75,19 @@ const HomePage = () => {
                             <h3 className="p-3 display-6 font-weight-bold">Fie că știi deja ce vrei să studiezi și vrei să afli unde poți găsi așa ceva, fie că știi unde vrei să te duci și vrei să afli ce poți studia acolo, aici vei găsi imediat ceea ce cauți folosind una din cele două căutări simple!</h3>
                             <Row className="mt-3 mb-4">
                                 <Col>
-                                    <a href='/domenii'><Button variant="primary" size="lg" className="rounded-pill">Căutare după domeniu</Button></a>
+                                    <Link href="/domenii">
+                                        <a><Button variant="primary" size="lg" className="rounded-pill">Căutare după domeniu</Button></a>
+                                    </Link href="/regiuni">
                                 </Col>
                                 <Col>
-                                    <a href='/regiuni'><Button variant="primary" size="lg" className="rounded-pill">Căutare după locație</Button></a>
+                                    <Link href="/regiuni">
+                                        <a><Button variant="primary" size="lg" className="rounded-pill">Căutare după locație</Button></a>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Col>
                         <Col className="text-center">
-                            <img src="/images/choose.svg" alt="" className="mw-100" />
+                            <Image src="/images/choose.svg" alt="" className="mw-100" />
                         </Col>
                     </Row>
                 </Container>
@@ -79,11 +95,13 @@ const HomePage = () => {
                 <Container fluid className="mb-5 shadow">
                     <Row>
                         <Col lg={6} className="text-center">
-                            <img src="/images/web_search.svg" alt="" className="mw-100" />
+                            <Image src="/images/web_search.svg" alt="" className="mw-100" />
                         </Col>
                         <Col lg className="text-center my-auto">
                             <h3 className="p-3 display-6 font-weight-bold">Pentru cei care vor să filtreze în detaliu opțiunile disponibile, există:</h3>
-                            <a href='/searchPage'><Button variant="outline-primary" size="lg" className="rounded-pill mb-3">Căutarea avansată!</Button></a>
+                            <Link href="/searchPage">
+                                <a><Button variant="outline-primary" size="lg" className="rounded-pill mb-3">Căutarea avansată!</Button></a>
+                            </Link>
                         </Col>
                     </Row>
                 </Container>
@@ -95,7 +113,7 @@ const HomePage = () => {
                             <h3 className="p-3 display-6">În cazul în care nu găsești informația de care ai nevoie, <a href="#">înregistrează-te</a> și lasă o întrebare.</h3>
                         </Col>
                         <Col lg className="text-center">
-                            <img src="/images/public_discussion.svg" alt="" className="mw-100" />
+                            <Image src="/images/public_discussion.svg" alt="" className="mw-100" />
                         </Col>
                     </Row>
                 </Container>
@@ -103,7 +121,7 @@ const HomePage = () => {
                 <Container fluid className="shadow">
                     <Row>
                         <Col lg={6} className="text-center">
-                            <img src="/images/lightbulb_moment.svg" alt="" className="mw-100" />
+                            <Image src="/images/lightbulb_moment.svg" alt="" className="mw-100" />
                         </Col>
                         <Col lg className="text-center my-auto">
                             <h3 className="p-3 display-3 font-weight-bold">Începe căutarea și găsește-ți locul potrivit!</h3>

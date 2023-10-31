@@ -42,7 +42,7 @@ function Chat() {
     if(dataFetched) {
         fetchInitialMessage();
     }
-  }, [dataFetched]);
+  }, [dataFetched, fetchInitialMessage]);
 
   const fetchInitialMessage = async () => {
     setIsLoading(true);
@@ -101,7 +101,7 @@ function Chat() {
         <Container className="flex-grow-1 d-flex flex-column">
           <div className="flex-grow-1" style={{ overflowY: "scroll", overflowX: "hidden" }}>
             {conversation.map((msg, index) => (
-              <Row className="my-2">
+              <Row className="my-2" key={index}>
                 <Col xs={10} className={`${msg.role === 'assistant' ? '' : 'offset-1'}`}>
                   <Card className={`shadow-sm ${msg.role === 'assistant' ? 'bg-light text-dark' : 'bg-primary text-white'}`}>
                     <Card.Body>
