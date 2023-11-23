@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   let connection;
   try {
-    connection = await pool.getConnection();
+    connection = await pool.connect();
     const [rows, fields] = await connection.query('SELECT * FROM domeniistudiu');
     res.json(rows);
   } catch (error) {
