@@ -20,7 +20,7 @@ if (req.method === 'POST') {
     const insertId = result[0].insertId;
 
     // Query for the newly inserted comment
-    const [rows] = await pool.query('SELECT * FROM comments WHERE id = $1', [insertId]);
+    const {rows, fields} = await pool.query('SELECT * FROM comments WHERE id = $1', [insertId]);
 
     // Return the newly inserted comment
     res.json(rows[0]);
