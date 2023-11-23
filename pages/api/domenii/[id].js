@@ -10,8 +10,7 @@ export default async function handler(req, res) {
   let connection;
   try {
     connection = await pool.getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM `domeniistudiu` WHERE `id` = ?', [id]);
-
+    const { rows, fields } = await connection.query('SELECT * FROM domeniistudiu WHERE id = $1', [id]);
     if (rows.length === 0) {
       res.status(404).json({ message: 'Domeniu not found' });
     } else {
