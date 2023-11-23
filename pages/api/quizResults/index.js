@@ -9,9 +9,5 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
-  } finally {
-    if (pool) {
-      await pool.end();
-    }
-  }
+  } 
 }

@@ -28,11 +28,7 @@ if (req.method === 'POST') {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
-  } finally {
-    if (pool) {
-      await pool.end();
-    }
-  }
+  } 
   return;
 }
 
@@ -43,9 +39,5 @@ if (req.method === 'POST') {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
-  } finally {
-    if (pool) {
-      await pool.end();
-    }
-  }
+  } 
 }
