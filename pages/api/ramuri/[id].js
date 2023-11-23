@@ -7,10 +7,8 @@ export default async function handler(req, res) {
 
   const { id } = req.query;
 
-  let connection;
   try {
-    connection = await pool.getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM `ramuri` WHERE `id` = ?', [id]);
+    const [rows, fields] = await pool.execute('SELECT * FROM ramuri WHERE id = $1', [id]);
 
     if (rows.length === 0) {
       res.status(404).json({ message: 'Ramura not found' });
@@ -21,8 +19,8 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   } finally {
-    if (connection) {
-      connection.release();
+    if (pool) {
+      await pool.end();
     }
   }
 }

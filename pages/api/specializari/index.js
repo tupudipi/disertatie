@@ -6,12 +6,15 @@ export default async function handler(req, res) {
   const pool = getPool();
 
   try {
-    const connection = await pool.getConnection();
-    const [rows, fields] = await connection.query('SELECT * FROM `specializari`');
-    connection.release();
+    const [rows, fields] = await pool.query('SELECT * FROM specializari');
     res.json(rows);
+
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ message: 'Internal server error' });
+  } finally {
+    if (pool) {
+      await pool.end();
+    }
   }
 }

@@ -9,12 +9,10 @@ export default async function handler(req, res) {
 
     const { username, parola } = req.body;
 
-    const pool = getPool();
-
     try {
         // Check if username or email already exists
         const [existingUsers] = await pool.query(
-            'SELECT * FROM users WHERE username = ?',
+            'SELECT * FROM users WHERE username = $1',
             [username]
         );
 

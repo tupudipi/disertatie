@@ -5,12 +5,9 @@ export default async function handler(req, res) {
 
   const pool = getPool();
 
-  let connection;
   try {
-    connection = await pool.getConnection();
-
     // Fetch quiz results for the specified email
-    const [rows] = await connection.query('SELECT * FROM quizresults WHERE email = ?', [email]);
+    const [rows] = await pool.query('SELECT * FROM quizresults WHERE email = $1', [email]);
 
     // If rows were returned, send them back in response
     if (rows.length > 0) {
@@ -24,8 +21,8 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   } finally {
-    if (connection) {
-      connection.release();
+    if (pool) {
+      await pool.end();
     }
   }
 }

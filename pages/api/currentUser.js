@@ -17,10 +17,8 @@ export default async function handler(req, res) {
             
             // fetch user details from database
             const pool = getPool();
-            let connection;
             try {
-                connection = await pool.getConnection();
-                const [rows] = await connection.query('SELECT * FROM `users` WHERE `email` = ?', [email]);
+                const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
                 const userDetails = rows[0]; // Get the first result
 
                 if (!userDetails) {
@@ -28,14 +26,13 @@ export default async function handler(req, res) {
                     return res.status(404).json({ message: 'User not found' });
                 }
 
-                // Add any other user properties you're interested in here
                 return res.status(200).json({ user: { ...userDetails }});
             } catch (error) {
                 console.error(error);
                 return res.status(500).json({ message: 'Internal server error' });
             } finally {
-                if (connection) {
-                    connection.release();
+                if (pool) {
+                  await pool.end();
                 }
             }
 

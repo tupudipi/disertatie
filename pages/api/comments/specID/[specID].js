@@ -7,10 +7,8 @@ export default async function handler(req, res) {
 
   const { specID } = req.query;
 
-  let connection;
   try {
-    connection = await pool.getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM `comments` WHERE `page_id` = ?', [specID]);
+    const [rows, fields] = await pool.query('SELECT * FROM comments WHERE page_id = $1', [specID]);
 
     if (rows.length === 0) {
       res.json([]); // Send an empty array instead of an error
@@ -21,8 +19,8 @@ export default async function handler(req, res) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   } finally {
-    if (connection) {
-      connection.release();
+    if (pool) {
+      await pool.end();
     }
   }
 }

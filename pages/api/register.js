@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   try {
     // Check if username or email already exists
     const [existingUsers] = await pool.query(
-      'SELECT * FROM users WHERE username = ? OR email = ?',
+      'SELECT * FROM users WHERE username = $1 OR email = $2',
       [username, email]
     );
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       .then(async (userCredential) => {
         const user = userCredential.user;
         await pool.query(
-          'INSERT INTO users (username, nume, prenume, email, rol) VALUES (?, ?, ?, ?, ?)',
+          'INSERT INTO users (username, nume, prenume, email, rol) VALUES ($1, $2, $3, $4, $5)',
           [username, nume, prenume, email, 'user']
         );
       })
