@@ -123,7 +123,7 @@ const SearchResults = ({
                           <Col lg={3} className="my-auto">
                             <Card.Title>
                               <a href={`/specializare/${result["id_s"]}`} className="text-decoration-none w-100">
-                                {result.Specializare}
+                                {result.specializare}
                               </a>
                             </Card.Title>
                           </Col>
