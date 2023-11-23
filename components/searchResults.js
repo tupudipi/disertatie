@@ -94,7 +94,7 @@ const SearchResults = ({
   const pages = Array.from({ length: (end - start + 1) }, (_, i) => start + i);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
       <div className="search-results w-100">
 
         <InputGroup className="my-3" style={{ boxShadow: '0 0 15px 20px white' }}>
@@ -113,57 +113,60 @@ const SearchResults = ({
         ) : currentResults.length > 0 ? (
           <>
             <Row xs={1} md={2} lg={3} className="g-4 pb-4 mb-2">
-              {currentResults.map((result, index) => (
-                <Col key={index} lg={12}>
-                  <Card className="w-100">
-                    <Card.Body className="bg-light">
-                      <Row>
-                        <Col lg={3} className="my-auto">
-                          <Card.Title>
-                            <a href={`/specializare/${result["id-s"]}`} className="text-decoration-none w-100">
-                              {result.Specializare}
-                            </a>
-                          </Card.Title>
-                        </Col>
-                        <Col lg={4} className="bg-white">
-                          <p className="mt-5 mb-0">
-                            <a href={`/domeniu/${result["id-d"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-stop"></i> Domeniul {result.Domeniu}
-                            </a>
-                          </p>
-                          <p className="mb-4">
-                            <a href={`/ramura/${result["id-ra"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-diagram-3"></i> Ramura {result.Ramura}
-                            </a>
-                          </p>
-                        </Col>
-                        <Col lg={5} className="bg-white">
-                          <p className="my-2">
-                            <a href={`/regiune/${result["id-re"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-geo-alt"></i> {result.Regiune}
-                            </a>
-                          </p>
-                          <p className="mb-2">
-                            <a href={`/oras/${result["id-o"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-building"></i> {result.Oras}
-                            </a>
-                          </p>
-                          <p className="mb-2">
-                            <a href={`/universitate/${result["id-u"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-house"></i> {result.Universitate}
-                            </a>
-                          </p>
-                          <p className="mb-2">
-                            <a href={`/facultate/${result["id-f"]}`} className="text-decoration-none w-100">
-                              <i className="bi bi-award"></i> {result.Facultate}
-                            </a>
-                          </p>
-                        </Col>
-                      </Row>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
+              {currentResults.map((result, index) => {
+                console.log(result);
+                return (
+                  <Col key={index} lg={12}>
+                    <Card className="w-100">
+                      <Card.Body className="bg-light">
+                        <Row>
+                          <Col lg={3} className="my-auto">
+                            <Card.Title>
+                              <a href={`/specializare/${result["id-s"]}`} className="text-decoration-none w-100">
+                                {result.Specializare}
+                              </a>
+                            </Card.Title>
+                          </Col>
+                          <Col lg={4} className="bg-white">
+                            <p className="mt-5 mb-0">
+                              <a href={`/domeniu/${result["id-d"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-stop"></i> Domeniul {result.Domeniu}
+                              </a>
+                            </p>
+                            <p className="mb-4">
+                              <a href={`/ramura/${result["id-ra"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-diagram-3"></i> Ramura {result.Ramura}
+                              </a>
+                            </p>
+                          </Col>
+                          <Col lg={5} className="bg-white">
+                            <p className="my-2">
+                              <a href={`/regiune/${result["id-re"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-geo-alt"></i> {result.Regiune}
+                              </a>
+                            </p>
+                            <p className="mb-2">
+                              <a href={`/oras/${result["id-o"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-building"></i> {result.Oras}
+                              </a>
+                            </p>
+                            <p className="mb-2">
+                              <a href={`/universitate/${result["id-u"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-house"></i> {result.Universitate}
+                              </a>
+                            </p>
+                            <p className="mb-2">
+                              <a href={`/facultate/${result["id-f"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-award"></i> {result.Facultate}
+                              </a>
+                            </p>
+                          </Col>
+                        </Row>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                )
+              })}
             </Row>
 
             <div
