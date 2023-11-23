@@ -38,7 +38,7 @@ if (req.method === 'POST') {
 
   // handle GET request
   try {
-    const [rows] = await pool.query('SELECT * FROM comments');
+    const {rows, fields} = await pool.query('SELECT * FROM comments');
     res.json(rows);
   } catch (error) {
     console.error(error);
