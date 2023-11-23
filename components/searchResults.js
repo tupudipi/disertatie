@@ -122,42 +122,42 @@ const SearchResults = ({
                         <Row>
                           <Col lg={3} className="my-auto">
                             <Card.Title>
-                              <a href={`/specializare/${result["id-s"]}`} className="text-decoration-none w-100">
+                              <a href={`/specializare/${result["id_s"]}`} className="text-decoration-none w-100">
                                 {result.Specializare}
                               </a>
                             </Card.Title>
                           </Col>
                           <Col lg={4} className="bg-white">
                             <p className="mt-5 mb-0">
-                              <a href={`/domeniu/${result["id-d"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-stop"></i> Domeniul {result.Domeniu}
+                              <a href={`/domeniu/${result["id_d"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-stop"></i> Domeniul {result.domeniu}
                               </a>
                             </p>
                             <p className="mb-4">
-                              <a href={`/ramura/${result["id-ra"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-diagram-3"></i> Ramura {result.Ramura}
+                              <a href={`/ramura/${result["id_ra"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-diagram-3"></i> Ramura {result.ramura}
                               </a>
                             </p>
                           </Col>
                           <Col lg={5} className="bg-white">
                             <p className="my-2">
-                              <a href={`/regiune/${result["id-re"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-geo-alt"></i> {result.Regiune}
+                              <a href={`/regiune/${result["id_re"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-geo-alt"></i> {result.regiune}
                               </a>
                             </p>
                             <p className="mb-2">
-                              <a href={`/oras/${result["id-o"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-building"></i> {result.Oras}
+                              <a href={`/oras/${result["id_o"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-building"></i> {result.oras}
                               </a>
                             </p>
                             <p className="mb-2">
-                              <a href={`/universitate/${result["id-u"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-house"></i> {result.Universitate}
+                              <a href={`/universitate/${result["id_u"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-house"></i> {result.universitate}
                               </a>
                             </p>
                             <p className="mb-2">
-                              <a href={`/facultate/${result["id-f"]}`} className="text-decoration-none w-100">
-                                <i className="bi bi-award"></i> {result.Facultate}
+                              <a href={`/facultate/${result["id_f"]}`} className="text-decoration-none w-100">
+                                <i className="bi bi-award"></i> {result.facultate}
                               </a>
                             </p>
                           </Col>
