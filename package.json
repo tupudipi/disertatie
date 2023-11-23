@@ -22,6 +22,7 @@
     "next": "13.4.4",
     "next-auth": "^4.22.1",
     "openai": "^3.2.1",
+    "pg": "^8.11.3",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-bootstrap": "^2.7.4",
