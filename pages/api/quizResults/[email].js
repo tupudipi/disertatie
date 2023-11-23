@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   try {
     // Fetch quiz results for the specified email
-    const [rows] = await pool.query('SELECT * FROM quizresults WHERE email = $1', [email]);
+    const {rows, fields} = await pool.query('SELECT * FROM quizresults WHERE email = $1', [email]);
 
     // If rows were returned, send them back in response
     if (rows.length > 0) {

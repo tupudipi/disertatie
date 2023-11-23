@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const pool = getPool();
 
   try {
-    const [rows, fields] = await pool.query('SELECT * FROM regiuni');
+    const {rows, fields} = await pool.query('SELECT * FROM regiuni');
     res.json(rows);
   } catch (error) {
     console.error(error);

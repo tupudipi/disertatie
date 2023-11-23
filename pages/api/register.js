@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const [existingUsers] = await pool.query(
       'SELECT * FROM users WHERE username = $1 OR email = $2',
       [username, email]
-    );
+    ).rows;
 
     if (existingUsers.length) {
       return res.status(409).json({ message: 'Username or email already in use' });

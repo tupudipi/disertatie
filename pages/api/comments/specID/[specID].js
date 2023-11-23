@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const { specID } = req.query;
 
   try {
-    const [rows, fields] = await pool.query('SELECT * FROM comments WHERE page_id = $1', [specID]);
+    const {rows, fields} = await pool.query('SELECT * FROM comments WHERE page_id = $1', [specID]);
 
     if (rows.length === 0) {
       res.json([]); // Send an empty array instead of an error

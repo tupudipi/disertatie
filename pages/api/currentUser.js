@@ -18,7 +18,7 @@ export default async function handler(req, res) {
             // fetch user details from database
             const pool = getPool();
             try {
-                const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+                const {rows, fields} = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
                 const userDetails = rows[0]; // Get the first result
 
                 if (!userDetails) {

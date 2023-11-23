@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const { id } = req.query;
 
   try {
-    const [rows, fields] = await pool.query('SELECT * FROM orase WHERE id = $1', [id]);
+    const {rows, fields} = await pool.query('SELECT * FROM orase WHERE id = $1', [id]);
 
     if (rows.length === 0) {
       res.status(404).json({ message: 'Oras not found' });

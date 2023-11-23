@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         const [existingUsers] = await pool.query(
             'SELECT * FROM users WHERE username = $1',
             [username]
-        );
+        ).rows;
 
         if (existingUsers.length) {
             const user = existingUsers[0];
