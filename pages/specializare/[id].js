@@ -15,7 +15,10 @@ function SpecializarePage() {
   const [domeniu, setDomeniu] = useState({});
   const [oras, setOras] = useState({});
   const [regiune, setRegiune] = useState({});
-  const [user, setUser] = useState(null);
+  const pull_user = (user) => {
+    const [user, setUser] = useState(user);
+  }
+
   
   const router = useRouter();
   const { id } = router.query;
@@ -114,7 +117,7 @@ function SpecializarePage() {
 
   return (
     <div>
-      <MyNav />
+      <MyNav func={pull_user}/>
       <main style={{
         paddingTop: '0px',
         position: 'relative',

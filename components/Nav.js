@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Modal, Container } from 'react-bootstrap';
 import NavButtons from './NavButtons';
 import Image from 'next/image';
 
-const MyNav = () => {
+const MyNav = (props) => {
 
   useEffect(() => {
     // Add any side effects you want to run when the component mounts here
@@ -38,7 +38,7 @@ const MyNav = () => {
             </Nav.Item>
 
           </Nav>
-          <NavButtons />
+          <NavButtons func={props}/>
 
         </Navbar.Collapse>
       </Container>
