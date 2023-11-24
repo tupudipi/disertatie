@@ -25,7 +25,7 @@ const NavButtons = () => {
 
     useEffect(() => {
         fetchUser(); // fetch the current user when the component mounts
-    }, [fetchUser]); // Include fetchUser in the dependency array
+    }, []); 
 
     const handleLogout = async () => {
         try {
