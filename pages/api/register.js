@@ -26,10 +26,10 @@ export default async function handler(req, res) {
     );
     
     const existingUsers = result.rows || [];
-    
+
     console.log('Query Result:', result);
     console.log('Existing Users:', existingUsers);
-    console.log('Fields:', fields);
+    console.log('Fields:', result.fields);
 
     if (existingUsers.length > 0) {
       return res.status(409).json({ message: 'Username or email already in use' });
