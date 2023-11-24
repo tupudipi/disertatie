@@ -1,6 +1,6 @@
 // pages/HomePage.js
 'use client'
-import React from 'react';
+import {React, useState} from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from '../../components/Nav';
