@@ -3,6 +3,8 @@ import app from '../../src/app/firebase';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default async function handler(req, res) {
+  console.log('Received request method:', req.method);
+
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
