@@ -67,10 +67,10 @@ const NavButtons = () => {
             <div className='d-flex flex-wrap justify-content-center'>
                 <div className="d-flex">
                     <div className="mx-2">
-                        <LoginModal onLogin={fetchCurrentUser} />
+                        <LoginModal onLogin={fetchUser} />
                     </div>
                     <div className="mx-2">
-                        <RegistrationModal onRegister={fetchCurrentUser} />
+                        <RegistrationModal onRegister={fetchUser} />
                     </div>
                 </div>
             </div>
