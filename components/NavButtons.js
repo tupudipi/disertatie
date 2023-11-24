@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 import { Button } from 'react-bootstrap';
 import app from '../src/app/firebase';
 
-const NavButtons = () => {
+const NavButtons = (props) => {
     const [user, setUser] = useState(null);
 
     const fetchUser = useCallback(async () => {
