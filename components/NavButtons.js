@@ -44,38 +44,59 @@ const NavButtons = () => {
             console.error('Error logging out:', error);
         }
     };
-
-    if (user) {
-        return (
-            <div className='d-flex flex-wrap justify-content-center'>
-                <div className="d-flex">
-                    <div className="mx-2">
+    return (
+        <div className='d-flex flex-wrap justify-content-center'>
+            <div className="d-flex">
+                <div className="mx-2">
+                    {user ?
                         <Button variant="outline-primary" className="rounded-pill border-2" disabled>
                             {user.username}
-                        </Button>
-                    </div>
-                    <div className="mx-2">
+                        </Button> :
+                        <LoginModal onLogin={fetchUser} />
+                    }
+                </div>
+                <div className="mx-2">
+                    {user ?
                         <Button variant="outline-danger" className="rounded-pill border-2" onClick={handleLogout}>
                             Logout
-                        </Button>
-                    </div>
-                </div>
-            </div>
-        );
-    } else {
-        return (
-            <div className='d-flex flex-wrap justify-content-center'>
-                <div className="d-flex">
-                    <div className="mx-2">
-                        <LoginModal onLogin={fetchUser} />
-                    </div>
-                    <div className="mx-2">
+                        </Button> :
                         <RegistrationModal onRegister={fetchUser} />
-                    </div>
+                    }
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+    // if (user) {
+    //     return (
+    //         <div className='d-flex flex-wrap justify-content-center'>
+    //             <div className="d-flex">
+    //                 <div className="mx-2">
+    //                     <Button variant="outline-primary" className="rounded-pill border-2" disabled>
+    //                         {user.username}
+    //                     </Button>
+    //                 </div>
+    //                 <div className="mx-2">
+    //                     <Button variant="outline-danger" className="rounded-pill border-2" onClick={handleLogout}>
+    //                         Logout
+    //                     </Button>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // } else {
+    //     return (
+    //         <div className='d-flex flex-wrap justify-content-center'>
+    //             <div className="d-flex">
+    //                 <div className="mx-2">
+    //                     <LoginModal onLogin={fetchUser} />
+    //                 </div>
+    //                 <div className="mx-2">
+    //                     <RegistrationModal onRegister={fetchUser} />
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 };
 
 export default NavButtons;
