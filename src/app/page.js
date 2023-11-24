@@ -9,9 +9,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HomePage = () => {
+    const [user, setUser] = useState(null);
+    const pull_user = (user) => {
+      setUser(user);
+    }
     return (
         <div>
-            <Nav />
+            <Nav pull_user={pull_user}/>
             <main style={{
                 paddingTop: '0px',
                 position: 'relative',
