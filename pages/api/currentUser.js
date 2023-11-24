@@ -10,29 +10,35 @@ export default async function handler(req, res) {
   const auth = getAuth(app);
   const pool = getPool();
 
-  onAuthStateChanged(auth, async (user) => {
-    try {
-      if (user) {
-        // User is signed in
-        const email = user.email;
+  try {
+    const user = await new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, (user) => {
+        resolve(user);
+      }, (error) => {
+        reject(error);
+      });
+    });
 
-        // fetch user details from database
-        const { rows, fields } = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        const userDetails = rows[0]; // Get the first result
+    if (user) {
+      // User is signed in
+      const email = user.email;
 
-        if (!userDetails) {
-          // No user found in database with the given email
-          return res.status(404).json({ message: 'User not found' });
-        }
+      // fetch user details from database
+      const { rows, fields } = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+      const userDetails = rows[0]; // Get the first result
 
-        return res.status(200).json({ user: { ...userDetails } });
-      } else {
-        // User is signed out
-        return res.status(401).json({ message: 'User is not signed in' });
+      if (!userDetails) {
+        // No user found in the database with the given email
+        return res.status(404).json({ message: 'User not found' });
       }
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Internal server error' });
+
+      return res.status(200).json({ user: { ...userDetails } });
+    } else {
+      // User is signed out
+      return res.status(401).json({ message: 'User is not signed in' });
     }
-  });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 }
