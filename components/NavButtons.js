@@ -7,38 +7,41 @@ import app from '../src/app/firebase';
 const NavButtons = () => {
     const [user, setUser] = useState(null);
 
-    const fetchCurrentUser = async () => {
-        const response = await fetch('/api/currentUser');
-        if (response.ok) {
-            const data = await response.json();
-            // console.log(`Current user is: ${data.user}`); 
-            setUser(data.user); // update state with user data
-        } else {
-            // Handle error here
-            // console.log('Failed to fetch current user');
-            setUser(null);
-        }
-    };
-
     useEffect(() => {
-        fetchCurrentUser(); // fetch the current user when the component mounts
+        const fetchUser = async () => {
+            try {
+                const response = await fetch('/api/currentUser');
+                if (response.ok) {
+                    const data = await response.json();
+                    setUser(data.user); // update state with user data
+                } else {
+                    // Handle error here
+                    setUser(null);
+                }
+            } catch (error) {
+                console.error('Error fetching current user:', error);
+                setUser(null);
+            }
+        };
+
+        fetchUser(); // fetch the current user when the component mounts
     }, []); // empty dependency array means this effect runs once on mount and not on updates
 
-    // console.log(`User state: ${user}`);
-
     const handleLogout = async () => {
-        const response = await fetch('/api/logout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        });
-    
-        const data = await response.json();
-        // alert(data.message);
-    
-        if(response.status === 200) {
-            console.log('User logged out...');
-            setUser(null);
-            location.reload()
+        try {
+            const response = await fetch('/api/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
+        
+            const data = await response.json();
+            if (response.status === 200) {
+                console.log('User logged out...');
+                setUser(null);
+                location.reload();
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
         }
     };
 
