@@ -4,12 +4,14 @@ import app from '../../src/app/firebase'
 
 export default async function handler(req, res) {
     console.log('Received request method:', req.method);
-    
+
     if (req.method !== 'POST') {
         return res.status(405).end();
     }
 
     const { username, parola } = req.body;
+    const pool = getPool();
+    const auth = getAuth(app);
 
     try {
         // Check if username or email already exists
@@ -27,7 +29,6 @@ export default async function handler(req, res) {
             const prenume = user.prenume;
             const rol = user.rol;
 
-            const auth = getAuth(app);
             signInWithEmailAndPassword(auth, email, parola)
                 .then((userCredential) => {
                     // Signed in 
