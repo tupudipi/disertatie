@@ -16,8 +16,8 @@ export default async function handler(req, res) {
     try {
         // Check if username or email already exists
         const result = await pool.query(
-            'SELECT * FROM users WHERE username = $1 OR email = $2',
-            [username, email]
+            'SELECT * FROM users WHERE username = $1 OR',
+            [username]
           );
           
           const existingUsers = result.rows || [];
