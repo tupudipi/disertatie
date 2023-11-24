@@ -16,10 +16,9 @@ function SpecializarePage() {
   const [oras, setOras] = useState({});
   const [regiune, setRegiune] = useState({});
   const pull_user = (navUserState) => {
-    const user = navUserState;
+    const [user, setUser] = useState(navUserState);
     return user;
   }
-
   
   const router = useRouter();
   const { id } = router.query;
@@ -40,9 +39,9 @@ function SpecializarePage() {
 //     }
 // }, []);
 
-  useEffect(() => {
-    fetchCurrentUser(); // fetch the current user when the component mounts
-  }, []);
+  // useEffect(() => {
+  //   fetchCurrentUser(); // fetch the current user when the component mounts
+  // }, []);
 
   useEffect(() => {
     // Fetch specializare
@@ -174,7 +173,7 @@ function SpecializarePage() {
         </Container>
         <hr/>
         <Container fluid="lg">
-        <CommentSection pageId={id} user={user}/>
+        <CommentSection pageId={id} user={pull_user}/>
         </Container>
       </main>
       <Footer />
