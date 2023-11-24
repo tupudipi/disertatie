@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   }
 
   const pool = getPool();
-  const auth = getAuth();
+  const auth = getAuth(app);
 
   try {
     // Check if username or email already exists
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error(error);
+    console.error("Registration error:", error.code, error.message);
     return res.status(500).json({ message: 'An error occurred during registration' });
   }
 }

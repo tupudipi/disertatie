@@ -8,8 +8,9 @@ export default async function handler(req, res) {
         return res.status(405).end();
     }
 
-    const auth = getAuth();
+    const auth = getAuth(app);
     onAuthStateChanged(auth, async (user) => {
+
         if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
