@@ -20,17 +20,21 @@ function SpecializarePage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const fetchCurrentUser = async () => {
-    const response = await fetch('/api/currentUser');
-    if (response.ok) {
-      const data = await response.json();
-      setUser(data.user); // update state with user data
-    } else {
-      // Handle error here
-      console.log('Failed to fetch current user');
-      setUser(null);
+  const fetchCurrentUser = useCallback(async () => {
+    try {
+        const response = await fetch('/api/currentUser');
+        if (response.ok) {
+            const data = await response.json();
+            setUser(data.user); // update state with user data
+        } else {
+            // Handle error here
+            setUser(null);
+        }
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        setUser(null);
     }
-  };
+}, []);
 
   useEffect(() => {
     fetchCurrentUser(); // fetch the current user when the component mounts
@@ -166,7 +170,7 @@ function SpecializarePage() {
         </Container>
         <hr/>
         <Container fluid="lg">
-        {user ? <CommentSection pageId={id} user={user}/>: <CommentSection pageId={id} user={null}/>}
+        <CommentSection pageId={id} user={user}/>
         </Container>
       </main>
       <Footer />
