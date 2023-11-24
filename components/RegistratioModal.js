@@ -96,6 +96,8 @@ const RegistrationModal = (props) => {
             body: JSON.stringify(formData),
         });
 
+        console.log('Response Status:', response.status);
+
         if (response.ok) {
             const data = await response.json();
             setSuccess([data.message]);
@@ -103,8 +105,11 @@ const RegistrationModal = (props) => {
             const error = await response.text();
             setErrors([error]);
         }
-        if(response.status === 200){
+
+        if (response.status === 200) {
             props.onRegister();
+        } else {
+            console.error('Registration failed:', response.status);
         }
     };
 
