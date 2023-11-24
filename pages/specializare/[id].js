@@ -15,10 +15,12 @@ function SpecializarePage() {
   const [domeniu, setDomeniu] = useState({});
   const [oras, setOras] = useState({});
   const [regiune, setRegiune] = useState({});
-  const pull_user = (navUserState) => {
-    const [user, setUser] = useState(navUserState);
-    return user;
+  //initialize user state with what is being passed up from the NavButtons component
+  const [user, setUser] = useState(null);
+  const pull_user = (user) => {
+    setUser(user);
   }
+
   
   const router = useRouter();
   const { id } = router.query;
@@ -117,7 +119,7 @@ function SpecializarePage() {
 
   return (
     <div>
-      <MyNav func={pull_user}/>
+      <MyNav pull_user={pull_user}/>
       <main style={{
         paddingTop: '0px',
         position: 'relative',
@@ -173,7 +175,7 @@ function SpecializarePage() {
         </Container>
         <hr/>
         <Container fluid="lg">
-        <CommentSection pageId={id} user={pull_user}/>
+        <CommentSection pageId={id} user={user}/>
         </Container>
       </main>
       <Footer />

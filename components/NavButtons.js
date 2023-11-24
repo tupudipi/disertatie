@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 import { Button } from 'react-bootstrap';
 import app from '../src/app/firebase';
 
-const NavButtons = (props) => {
+const NavButtons = ({pull_user}) => {
     const [user, setUser] = useState(null);
 
     const fetchUser = useCallback(async () => {
@@ -27,7 +27,9 @@ const NavButtons = (props) => {
         fetchUser(); // fetch the current user when the component mounts
     }, []); 
 
-    props.func(user);
+    useEffect(() => {
+        pull_user(user);
+      }, [user]);
 
     const handleLogout = async () => {
         try {
