@@ -44,12 +44,12 @@ const SearchResults = ({
 
           return (
             doesSearchTextMatch &&
-            (selectedDomenii.length === 0 || selectedDomenii.includes(result["id-d"])) &&
-            (selectedRamuri.length === 0 || selectedRamuri.includes(result["id-ra"])) &&
-            (selectedRegiuni.length === 0 || selectedRegiuni.includes(result["id-re"])) &&
-            (selectedOrase.length === 0 || selectedOrase.includes(result["id-o"])) &&
-            (selectedUniversitati.length === 0 || selectedUniversitati.includes(result["id-u"])) &&
-            (selectedFacultati.length === 0 || selectedFacultati.includes(result["id-f"]))
+            (selectedDomenii.length === 0 || selectedDomenii.includes(result["id_d"])) &&
+            (selectedRamuri.length === 0 || selectedRamuri.includes(result["id_ra"])) &&
+            (selectedRegiuni.length === 0 || selectedRegiuni.includes(result["id_re"])) &&
+            (selectedOrase.length === 0 || selectedOrase.includes(result["id_o"])) &&
+            (selectedUniversitati.length === 0 || selectedUniversitati.includes(result["id_u"])) &&
+            (selectedFacultati.length === 0 || selectedFacultati.includes(result["id_f"]))
           );
         });
 
@@ -114,7 +114,7 @@ const SearchResults = ({
           <>
             <Row xs={1} md={2} lg={3} className="g-4 pb-4 mb-2">
               {currentResults.map((result, index) => {
-                console.log(result);
+                // console.log(result);
                 return (
                   <Col key={index} lg={12}>
                     <Card className="w-100">
