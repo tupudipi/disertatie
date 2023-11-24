@@ -10,7 +10,7 @@ function DomeniuPage() {
   const [domeniu, setDomeniu] = useState({});
   const router = useRouter();
   const { id } = router.query;
-  cosnt [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const pull_user = (user) => {
     setUser(user);
