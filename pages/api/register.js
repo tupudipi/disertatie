@@ -1,6 +1,6 @@
 import getPool from '../../lib/db';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../src/app/firebase';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

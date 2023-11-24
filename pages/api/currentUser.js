@@ -1,6 +1,7 @@
 // pages/api/currentuser.js
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import getPool from '../../lib/db';
+import app from '../../src/app/firebase';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
