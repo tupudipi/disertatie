@@ -3,6 +3,8 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../src/app/firebase'
 
 export default async function handler(req, res) {
+    console.log('Received request method:', req.method);
+    
     if (req.method !== 'POST') {
         return res.status(405).end();
     }
@@ -11,19 +13,21 @@ export default async function handler(req, res) {
 
     try {
         // Check if username or email already exists
-        const [existingUsers] = await pool.query(
-            'SELECT * FROM users WHERE username = $1',
-            [username]
-        ).rows;
+        const result = await pool.query(
+            'SELECT * FROM users WHERE username = $1 OR email = $2',
+            [username, email]
+          );
+          
+          const existingUsers = result.rows || [];
 
-        if (existingUsers.length) {
+        if (existingUsers.length > 0) {
             const user = existingUsers[0];
             const email = user.email;
             const nume = user.nume;
             const prenume = user.prenume;
             const rol = user.rol;
 
-            const auth = getAuth();
+            const auth = getAuth(app);
             signInWithEmailAndPassword(auth, email, parola)
                 .then((userCredential) => {
                     // Signed in 
