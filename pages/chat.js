@@ -51,9 +51,9 @@ function Chat() {
   //   setDataFetched(true);
   // };
 
-  useEffect(() => {
-    fetchCurrentUser(); 
-  }, []);
+  // useEffect(() => {
+  //   fetchCurrentUser(); 
+  // }, []);
 
   useEffect(() => {
     if(dataFetched) {
