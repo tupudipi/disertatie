@@ -15,7 +15,7 @@ function SpecializarePage() {
   const [domeniu, setDomeniu] = useState({});
   const [oras, setOras] = useState({});
   const [regiune, setRegiune] = useState({});
-  const pull_user = (user) => {
+  let pull_user = (user) => {
     const [user, setUser] = useState(user);
   }
 
