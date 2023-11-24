@@ -25,6 +25,8 @@ export default async function handler(req, res) {
       [username, email]
     );
 
+    console.log('Existing Users:', existingUsers);
+
     if (existingUsers.length) {
       return res.status(409).json({ message: 'Username or email already in use' });
     }
