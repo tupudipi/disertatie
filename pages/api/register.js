@@ -1,6 +1,6 @@
 import getPool from '../../lib/db';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from '../../src/app/firebase'
+import app from '../../src/app/firebase';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -16,10 +16,11 @@ export default async function handler(req, res) {
   }
 
   const pool = getPool();
+  const auth = getAuth();
 
   try {
     // Check if username or email already exists
-    const {existingUsers, fields} = await pool.query(
+    const { existingUsers, fields } = await pool.query(
       'SELECT * FROM users WHERE username = $1 OR email = $2',
       [username, email]
     );
@@ -28,25 +29,20 @@ export default async function handler(req, res) {
       return res.status(409).json({ message: 'Username or email already in use' });
     }
 
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, parola)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        await pool.query(
-          'INSERT INTO users (username, nume, prenume, email, rol) VALUES ($1, $2, $3, $4, $5)',
-          [username, nume, prenume, email, 'user']
-        );
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    // Create user in Firebase authentication
+    const userCredential = await createUserWithEmailAndPassword(auth, email, parola);
+    const user = userCredential.user;
+    console.log(user);
+
+    // Insert user into the PostgreSQL database
+    await pool.query(
+      'INSERT INTO users (username, nume, prenume, email, rol) VALUES ($1, $2, $3, $4, $5)',
+      [username, nume, prenume, email, 'user']
+    );
 
     return res.status(200).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'An error occurred during registration' });
   }
-
 }
