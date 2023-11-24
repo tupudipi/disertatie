@@ -16,7 +16,7 @@ const SearchPage = () => {
     return (
         <div>
             <Container fluid>
-                <MyNav />
+                <MyNav pull_user={pull_user}/>
                 <Row style={{
                     paddingTop: '0px',
                     position: 'relative',

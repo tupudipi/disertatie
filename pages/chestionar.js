@@ -241,7 +241,7 @@ export default function Questionnaire() {
 
   return (
 <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-  <MyNav />
+  <MyNav pull_user={pull_user}/>
 
   <div style={{ flex: 1 }} className='mt-5'>
     <Container>

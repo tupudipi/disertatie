@@ -97,7 +97,7 @@ function Chat() {
         backgroundColor: 'white',
         minHeight: '100vh'
       }}>
-        <MyNav />
+        <MyNav pull_user={pull_user}/>
         <Container className="flex-grow-1 d-flex flex-column">
           <div className="flex-grow-1" style={{ overflowY: "scroll", overflowX: "hidden" }}>
             {conversation.map((msg, index) => (

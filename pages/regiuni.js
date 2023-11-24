@@ -24,7 +24,7 @@ function RegiuniPage() {
 
   return (
     <div>
-      <MyNav />
+      <MyNav pull_user={pull_user}/>
       <main style={{
         paddingTop: '0px',
         position: 'relative',
