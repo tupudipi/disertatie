@@ -166,7 +166,7 @@ function SpecializarePage() {
         </Container>
         <hr/>
         <Container fluid="lg">
-        <CommentSection pageId={id} user={user}/>
+        {user ? <CommentSection pageId={id} user={user}/>: <CommentSection pageId={id} user={null}/>}
         </Container>
       </main>
       <Footer />
