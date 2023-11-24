@@ -12,6 +12,10 @@ const SearchPage = () => {
     const [selectedOrase, setSelectedOrase] = useState([]);
     const [selectedUniversitati, setSelectedUniversitati] = useState([]);
     const [selectedFacultati, setSelectedFacultati] = useState([]);
+    const [user, setUser] = useState(null);
+    const pull_user = (user) => {
+        setUser(user);
+      }
 
     return (
         <div>

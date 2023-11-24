@@ -164,22 +164,9 @@ export default function Questionnaire() {
   const [branchScores, setBranchScores] = useState({});
   const [user, setUser] = useState(null);
 
-    const fetchCurrentUser = async () => {
-        const response = await fetch('/api/currentUser');
-        if (response.ok) {
-            const data = await response.json();
-            // console.log(`Current user is: ${data.user}`); 
-            setUser(data.user); // update state with user data
-        } else {
-            // Handle error here
-            // console.log('Failed to fetch current user');
-            setUser(null);
-        }
-    };
-
-    useEffect(() => {
-      fetchCurrentUser(); // fetch the current user when the component mounts
-  }, []);
+  const pull_user = (user) => {
+    setUser(user);
+  }
 
   const currentQuestionData = questions[currentQuestionIndex];
 

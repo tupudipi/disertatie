@@ -8,6 +8,10 @@ import OraseAccordion from '../components/OraseAccordion';
 function RegiuniPage() {
   const [regiuni, setRegiuni] = useState([]);
   const [activeRegiuneId, setActiveRegiuneId] = useState(null);
+  const [user, setUser] = useState(null);
+  const pull_user = (user) => {
+    setUser(user);
+  }
 
   useEffect(() => {
     // Fetch regiuni

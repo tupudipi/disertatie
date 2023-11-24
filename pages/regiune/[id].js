@@ -10,6 +10,10 @@ function RegiunePage() {
   const [regiune, setRegiune] = useState({});
   const router = useRouter();
   const { id } = router.query;
+  const [user, setUser] = useState(null);
+  const pull_user = (user) => {
+    setUser(user);
+  }
 
   useEffect(() => {
     // Fetch regiune

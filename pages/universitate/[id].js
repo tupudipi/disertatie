@@ -10,6 +10,10 @@ function UniversitatePage() {
   const [universitate, setUniversitate] = useState({});
   const router = useRouter();
   const { id } = router.query;
+  const [user, setUser] = useState(null);
+  const pull_user = (user) => {
+    setUser(user);
+  }
 
   useEffect(() => {
     // Fetch universitate

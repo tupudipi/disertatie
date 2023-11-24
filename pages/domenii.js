@@ -8,6 +8,11 @@ import Footer from '../components/Footer';
 function DomeniiPage() {
   const [domenii, setDomenii] = useState([]);
   const [activeDomeniuId, setActiveDomeniuId] = useState(null);
+  const [user, setUser] = useState(null);
+
+  const pull_user = (user) => {
+    setUser(user);
+  }
 
   useEffect(() => {
     // Fetch domenii

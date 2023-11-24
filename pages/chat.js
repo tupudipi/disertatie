@@ -11,28 +11,45 @@ function Chat() {
   const [user, setUser] = useState(null);
   const [quizResults, setQuizResults] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);  // new state
-
-  const fetchCurrentUser = async () => {
-    const response = await fetch('/api/currentUser');
-    if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-
-        if (data.user) {
-          const quizResultsResponse = await fetch(`/api/quizResults/${data.user.email}`);
-          if (quizResultsResponse.ok) {
-            const quizResultsData = await quizResultsResponse.json();
-            setQuizResults(quizResultsData);
-          } else {
-            setQuizResults(null);
-          }
-        }
-    } else {
-        setUser(null);
+  const pull_user = async (user) => {
+    setUser(user);
+    
+    if (user) {
+      const quizResultsResponse = await fetch(`/api/quizResults/${user.email}`);
+      if (quizResultsResponse.ok) {
+        const quizResultsData = await quizResultsResponse.json();
+        setQuizResults(quizResultsData);
+      } else {
         setQuizResults(null);
+      }
+    } else {
+      setUser(null);
+      setQuizResults(null);
     }
     setDataFetched(true);
-  };
+  }
+
+  // const fetchCurrentUser = async () => {
+  //   const response = await fetch('/api/currentUser');
+  //   if (response.ok) {
+  //       const data = await response.json();
+  //       setUser(data.user);
+
+  //       if (data.user) {
+  //         const quizResultsResponse = await fetch(`/api/quizResults/${data.user.email}`);
+  //         if (quizResultsResponse.ok) {
+  //           const quizResultsData = await quizResultsResponse.json();
+  //           setQuizResults(quizResultsData);
+  //         } else {
+  //           setQuizResults(null);
+  //         }
+  //       }
+  //   } else {
+  //       setUser(null);
+  //       setQuizResults(null);
+  //   }
+  //   setDataFetched(true);
+  // };
 
   useEffect(() => {
     fetchCurrentUser(); 
