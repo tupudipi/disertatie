@@ -32,6 +32,7 @@ export default async function handler(req, res) {
     createUserWithEmailAndPassword(auth, email, parola)
       .then(async (userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         await pool.query(
           'INSERT INTO users (username, nume, prenume, email, rol) VALUES ($1, $2, $3, $4, $5)',
           [username, nume, prenume, email, 'user']
