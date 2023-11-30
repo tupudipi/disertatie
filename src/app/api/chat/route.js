@@ -38,9 +38,18 @@ async function fetchChatResponse(userInput) {
 
 
 export const POST = async (request) => {
-  const req = await request.json();
-  const userMessage = req.message;
-  const assistantResponse = await fetchChatResponse(userMessage);
+  try {
+    const req = await request.json();
+    const userMessage = req.message;
+    const assistantResponse = await fetchChatResponse(userMessage);
 
-  return NextResponse.json({ message: assistantResponse });
-}
+    return NextResponse.json({ message: assistantResponse });
+  } catch (error) {
+    console.error('Error in POST function:', error);
+
+    return NextResponse.error({
+      status: 500,
+      message: 'Internal server error',
+    });
+  }
+};
