@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Accordion from 'react-bootstrap/Accordion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FacultatiAccordion from './FacultatiAccordion';
+import { Spinner, Accordion } from 'react-bootstrap';
 
 function UniversitatiAccordion({ orasId }) {
   const [universitati, setUniversitati] = useState([]);
   const [activeUniversitateId, setActiveUniversitateId] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     fetch('/api/facultati')
@@ -18,14 +19,18 @@ function UniversitatiAccordion({ orasId }) {
           }
         });
         const universitatiForOras = [];
-        universitatiIds.forEach(universitateId => {
+        const requests = Array.from(universitatiIds).map(universitateId =>
           fetch(`/api/universitati/${universitateId}`)
             .then(response => response.json())
             .then(universitateData => {
               const universitate = { ...universitateData, nume: toTitleCase(universitateData.nume) };
               universitatiForOras.push(universitate);
-              setUniversitati([...universitatiForOras]);
-            });
+            })
+        );
+
+        Promise.all(requests).then(() => {
+          setUniversitati([...universitatiForOras]);
+          setLoading(false); // Set loading to false once data is fetched
         });
       });
   }, [orasId]);
@@ -40,23 +45,40 @@ function UniversitatiAccordion({ orasId }) {
     });
   };
 
+  const placeholderItems = Array.from({ length: 3 }, (_, index) => (
+    <Accordion.Item key={index} eventKey={index.toString()}>
+      <Accordion.Header>
+        <Spinner size="sm" animation="border" className='text-primary' />
+      </Accordion.Header>
+      <Accordion.Body>
+        <Spinner size="sm" animation="border" className='text-primary' />
+      </Accordion.Body>
+    </Accordion.Item>
+  ));
+
   return (
     <Accordion>
-      {universitati.map((universitate, index) => (
-        <Accordion.Item key={index} eventKey={index.toString()}>
-          <Accordion.Header onClick={() => handleAccordionClick(universitate.id)}>
-            {universitate.nume}
-          </Accordion.Header>
-          <Accordion.Body>
-            {activeUniversitateId === universitate.id && (
-              <>
-                <h5 className='text-body-secondary'>Facultăți:</h5>
-                <FacultatiAccordion universitateId={universitate.id} orasId={orasId}/>
-              </>
-            )}
-          </Accordion.Body>
-        </Accordion.Item>
-      ))}
+      {loading ? (
+        // Show placeholder accordion while loading
+        placeholderItems
+      ) : (
+        // Show actual accordion when data is loaded
+        universitati.map((universitate, index) => (
+          <Accordion.Item key={index} eventKey={index.toString()}>
+            <Accordion.Header onClick={() => handleAccordionClick(universitate.id)}>
+              {universitate.nume}
+            </Accordion.Header>
+            <Accordion.Body>
+              {activeUniversitateId === universitate.id && (
+                <>
+                  <h5 className='text-body-secondary'>Facultăți:</h5>
+                  <FacultatiAccordion universitateId={universitate.id} orasId={orasId} />
+                </>
+              )}
+            </Accordion.Body>
+          </Accordion.Item>
+        ))
+      )}
     </Accordion>
   );
 }
