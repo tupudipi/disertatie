@@ -109,7 +109,7 @@ const SearchResults = ({
         </InputGroup>
 
         {loading ? (Array.from({ length: 9 }, (_, index) => (
-          <Col lg={12}>
+          <Col key={index} lg={12}>
           <Card className="w-100 my-4">
             <Card.Body className="bg-light">
               <Row>
