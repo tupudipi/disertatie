@@ -1,10 +1,8 @@
-// pages/HomePage.js
 'use client'
-import { React, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from '../../components/Nav';
-import Footer from '../../components/Footer';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import educationPic from '../../public/images/education.svg';
@@ -15,14 +13,10 @@ import webSearchPic from '../../public/images/web_search.svg';
 import publicDiscussionPic from '../../public/images/public_discussion.svg';
 import lightbulbMomentPic from '../../public/images/lightbulb_moment.svg';
 
-const HomePage = () => {
-    const [user, setUser] = useState(null);
-    const pull_user = (user) => {
-        setUser(user);
-    }
+export default function HomePage() {
     return (
         <div>
-            <Nav pull_user={pull_user} />
+            <Nav />
             <main style={{
                 paddingTop: '0px',
                 position: 'relative',
@@ -141,4 +135,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+
