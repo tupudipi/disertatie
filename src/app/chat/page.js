@@ -11,52 +11,57 @@ function Chat() {
     const [message, setMessage] = useState("");
     const [conversation, setConversation] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [user, setUser] = useState(null);
     const [quizResults, setQuizResults] = useState(null);
     const [dataFetched, setDataFetched] = useState(false); 
     const { currentUser } = useAuthentication();
 
     useEffect(() => {
         if (currentUser) {
-            setUser(currentUser);
-            const quizResultsResponse = fetch(`/api/quizResults/${currentUser.email}`)
-                .then(res => res.json())
-                .then(data => setQuizResults(data))
-                .catch(err => setQuizResults(null));
+          fetch(`/api/quizResults/email/${currentUser.email}`)
+            .then(res => res.json())
+            .then(data => {
+              setQuizResults(data);
+              setDataFetched(true);
+            })
+            .catch(err => {
+              setQuizResults(null);
+              setDataFetched(true);
+            });
         } else {
-            setUser(null);
-            setQuizResults(null);
+          setQuizResults(null);
+          setDataFetched(true);
         }
-        setDataFetched(true);
-    }, [currentUser]);
-
-  useEffect(() => {
-    if(dataFetched) {
-        fetchInitialMessage();
-    }
-  }, [dataFetched]);
-
-    const fetchInitialMessage = async () => {
+      }, [currentUser]);
+      
+      useEffect(() => {
+        if (dataFetched) {
+          fetchInitialMessage();
+        }
+      }, [dataFetched]);
+      
+      const fetchInitialMessage = async () => {
         setIsLoading(true);
+      
         let message = 'start';
-        
-        if(user && quizResults) {
-            message = `Utilizatorul ${user.username} a parcurs deja chestionarul si a primit recomandarile: ${JSON.stringify(quizResults)}. start`;
+        console.log("user ", currentUser?.email, " results: ", quizResults);
+      
+        if (currentUser && quizResults) {
+          message = `Utilizatorul ${currentUser.email} a parcurs deja chestionarul si a primit recomandarile: ${JSON.stringify(quizResults)}. start`;
         }
-
+      
         const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message: message })
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: message })
         });
-
+      
         const { message: assistantMessage } = await res.json();
-
+      
         setConversation([{ role: 'assistant', content: assistantMessage }]);
         setIsLoading(false);
-    };
+      };      
 
     async function submitMessage(e) {
         e.preventDefault();

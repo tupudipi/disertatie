@@ -9,6 +9,7 @@ const NavButtons = () => {
 
     const handleLogout = useCallback(async () => {
         await logout();
+        window.location.reload();
     }, [logout]);
 
     return (

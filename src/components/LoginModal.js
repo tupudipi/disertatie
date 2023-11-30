@@ -26,6 +26,7 @@ const LoginModal = (props) => {
         console.log(formData);
         await login(formData.username, formData.parola);
         handleClose();
+        window.location.reload();
     };
 
     return (

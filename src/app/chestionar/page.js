@@ -4,6 +4,7 @@ import { Container, Row, Col, ProgressBar, ButtonGroup, Button } from 'react-boo
 import MyNav from '../../components/Nav';
 import Footer from '../../components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuthentication } from '../../components/context/AuthContext';
 
 // Lista cu întrebările, împreună cu domeniile și ramurile asociate
 const questions = [
@@ -163,7 +164,7 @@ export default function Questionnaire() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [domainScores, setDomainScores] = useState({});
   const [branchScores, setBranchScores] = useState({});
-  const [user, setUser] = useState(null);
+  const { currentUser } = useAuthentication();
 
   const currentQuestionData = questions[currentQuestionIndex];
 
@@ -203,15 +204,15 @@ export default function Questionnaire() {
     const rezultateChestionar = `Domeniu recomandat: ${recommendedDomain}\nRamuri recomandate: ${recommendedBranches.join(', ')}`;
 
     // Salvăm rezultatele în baza de date
-    if(user){
+    if(currentUser){
       const data = {
-        email: user.email,
+        email: currentUser.email,
         domain: recommendedDomain,
         branches: recommendedBranches.join(', ')
       };
       //console.log(data);
       //console.log(JSON.stringify(data));
-      fetch('/api/insertQuizResults', {
+      fetch('/api/quizResults/insert', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -220,9 +221,8 @@ export default function Questionnaire() {
       });
     }
 
-    alert(rezultateChestionar + (user ? '\nRezultatele au fost salvate în baza de date.' : '\nNu sunteți autentificat. Rezultatele nu au fost salvate în baza de date.'));
+    alert(rezultateChestionar + (currentUser ? '\nRezultatele au fost salvate în baza de date.' : '\nNu sunteți autentificat. Rezultatele nu au fost salvate în baza de date.'));
   };
-
   return (
 <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
   <MyNav />

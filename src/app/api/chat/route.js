@@ -36,19 +36,10 @@ async function fetchChatResponse(userInput) {
   return response.data.choices[0].message.content;
 }
 
-// export default async function handler(req, res) {
-//   if (req.method === 'POST') {
-//     const userMessage = req.body.message;
-//     const assistantResponse = await fetchChatResponse(userMessage);
 
-//     return res.status(200).json({ message: assistantResponse });
-//   } 
-
-//   return res.status(400);
-// }
-
-export const POST = async (req) => {
-  const userMessage = req.body.message;
+export const POST = async (request) => {
+  const req = await request.json();
+  const userMessage = req.message;
   const assistantResponse = await fetchChatResponse(userMessage);
 
   return NextResponse.json({ message: assistantResponse });

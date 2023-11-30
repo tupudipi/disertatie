@@ -96,6 +96,7 @@ const RegistrationModal = (props) => {
             await signup(formData.email, formData.parola);
             setSuccess(["Account created successfully."]);
             handleClose();
+            window.location.reload();
         } catch (error) {
             setErrors([error.message]);
         }
