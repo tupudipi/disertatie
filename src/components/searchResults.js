@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Pagination, InputGroup, FormControl } from 'react-bootstrap';
+import { Card, Row, Col, Pagination, InputGroup, FormControl, Spinner } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -108,8 +108,56 @@ const SearchResults = ({
           />
         </InputGroup>
 
-        {loading ? (
-          <p>Loading...</p>
+        {loading ? (Array.from({ length: 9 }, (_, index) => (
+          <Col lg={12}>
+          <Card className="w-100 my-4">
+            <Card.Body className="bg-light">
+              <Row>
+                <Col lg={3} className="my-auto">
+                  <Card.Title>
+                    <a href='' className="text-decoration-none w-100">
+                    <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </Card.Title>
+                </Col>
+                <Col lg={4} className="bg-white">
+                  <p className="mt-5 mb-0">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-stop"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                  <p className="mb-4">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-diagram-3"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                </Col>
+                <Col lg={5} className="bg-white">
+                  <p className="my-2">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-geo-alt"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-building"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-house"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                  <p className="mb-2">
+                    <a href='' className="text-decoration-none w-100">
+                      <i className="bi bi-award"></i> <Spinner size="sm" animation="border" className='text-primary'/>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>))
         ) : currentResults.length > 0 ? (
           <>
             <Row xs={1} md={2} lg={3} className="g-4 pb-4 mb-2">
