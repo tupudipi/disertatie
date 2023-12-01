@@ -31,7 +31,7 @@ const LoginModal = (props) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="outline-primary" className='rounded-pill btn btn-outline-primary px-4' onClick={handleShow}>
                 Log in
             </Button>
 

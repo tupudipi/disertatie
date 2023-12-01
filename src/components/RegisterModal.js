@@ -131,7 +131,7 @@ const RegistrationModal = (props) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" className='rounded-pill px-4' onClick={handleShow}>
                 Sign Up
             </Button>
 

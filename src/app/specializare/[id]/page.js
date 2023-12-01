@@ -89,54 +89,59 @@ function SpecializarePage({ params }) {
 
 
   return (
-    <Container fluid="lg">
-      <h1 className='page-header display-3'>
-        <small className="text-muted">Specializarea </small>
-        {specializare.nume}
-      </h1>
-      <h4>
-        <small className="text-muted">
-          <a className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
-            <i className="bi bi-award"></i> {facultate.nume}
-          </a>
-        </small><br />
-        <small className="text-muted">
-          <a className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
-            <i className="bi bi-house"></i> {universitate.nume}
-          </a>
-        </small>
-      </h4>
-      <hr />
-      <div className="row">
-        <div className="col text-center">
-          <h5 className="mt-4 mb-2">
-            <a className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
-              <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
+    <>
+      <Container fluid="lg">
+        <h1 className='page-header display-3'>
+          <small className="text-muted">Specializarea </small>
+          {specializare.nume}
+        </h1>
+        <h4>
+          <small className="text-muted">
+            <a className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
+              <i className="bi bi-award"></i> {facultate.nume}
             </a>
-          </h5>
-          <h5 className="mb-4">
-            <a className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
-              <i className="bi bi-diagram-3"></i> Ramura {ramura.nume}
+          </small><br />
+          <small className="text-muted">
+            <a className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
+              <i className="bi bi-house"></i> {universitate.nume}
             </a>
-          </h5>
+          </small>
+        </h4>
+        <hr />
+        <div className="row">
+          <div className="col text-center">
+            <h5 className="mt-4 mb-2">
+              <a className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
+                <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
+              </a>
+            </h5>
+            <h5 className="mb-4">
+              <a className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
+                <i className="bi bi-diagram-3"></i> Ramura {ramura.nume}
+              </a>
+            </h5>
+          </div>
+          <div className="col text-center">
+            <h5 className="mt-4 mb-2">
+              <a className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
+                <i className="bi bi-geo-alt"></i> {regiune.nume}
+              </a>
+            </h5>
+            <h5 className="mb-4">
+              <a className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
+                <i className="bi bi-building"></i> {oras.nume}
+              </a>
+            </h5>
+          </div>
         </div>
-        <div className="col text-center">
-          <h5 className="mt-4 mb-2">
-            <a className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
-              <i className="bi bi-geo-alt"></i> {regiune.nume}
-            </a>
-          </h5>
-          <h5 className="mb-4">
-            <a className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
-              <i className="bi bi-building"></i> {oras.nume}
-            </a>
-          </h5>
-        </div>
-      </div>
-      <AuthenticationProvider>
-        <CommentSection pageId={params.id} />
-      </AuthenticationProvider>
-    </Container>
+      </Container>
+      <hr></hr>
+      <Container fluid="lg">
+        <AuthenticationProvider>
+          <CommentSection pageId={params.id} />
+        </AuthenticationProvider>
+      </Container>
+    </>
 
   );
 }

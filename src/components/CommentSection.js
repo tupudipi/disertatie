@@ -144,7 +144,7 @@ const CommentSection = ({ pageId }) => {
     return (
         <div>
             {/* Comment form */}
-            <div className="card-body bg-light">
+            <div className="card-body bg-light p-3 border border-light rounded">
                 <h4>{currentUser ? 'Spune părerea ta: ' : 'Doar utilizatorii înregistrați pot lăsa comentarii.'}</h4>
                 <form onSubmit={handleCommentSubmit}>
                     <textarea
@@ -155,7 +155,7 @@ const CommentSection = ({ pageId }) => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button type="submit" name="create_comment" className="mt-1 btn btn-outline-primary" disabled={!currentUser}>
+                    <button type="submit" name="create_comment" className="mt-1 btn btn-outline-primary" disabled={!currentUser} >
                         Postează Comentariu
                     </button>
                 </form>
