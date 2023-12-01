@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Accordion, Container, Spinner } from 'react-bootstrap';
 import RamuriAccordion from '@/components/RamuriAccordion';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNav from '@/components/Nav';
-import Footer from '@/components/Footer';
 
 function DomeniiPage() {
   const [domenii, setDomenii] = useState([]);
@@ -37,18 +35,6 @@ function DomeniiPage() {
   ));
 
   return (
-    <div>
-      <MyNav />
-      <main
-        style={{
-          paddingTop: '0px',
-          position: 'relative',
-          zIndex: '1',
-          backgroundColor: 'white',
-          marginBottom: '140px',
-          paddingBottom: '10px',
-        }}
-      >
         <Container fluid="lg">
           <h1 className="page-header display-3">Domenii</h1>
           <hr></hr>
@@ -79,9 +65,6 @@ function DomeniiPage() {
           </Accordion>
           <hr></hr>
         </Container>
-      </main>
-      <Footer />
-    </div>
   );
 }
 

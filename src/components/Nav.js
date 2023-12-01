@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from 'react';
 import { Navbar, Nav, Button, Modal, Container } from 'react-bootstrap';
 import NavButtons from './NavButtons';

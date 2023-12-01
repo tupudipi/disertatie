@@ -1,10 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, ProgressBar, ButtonGroup, Button } from 'react-bootstrap';
-import MyNav from '../../components/Nav';
-import Footer from '../../components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAuthentication } from '../../components/context/AuthContext';
+import { useAuthentication } from '@/components/context/AuthContext';
 
 // Lista cu întrebările, împreună cu domeniile și ramurile asociate
 const questions = [
@@ -223,13 +221,9 @@ export default function Questionnaire() {
 
     alert(rezultateChestionar + (currentUser ? '\nRezultatele au fost salvate în baza de date.' : '\nNu sunteți autentificat. Rezultatele nu au fost salvate în baza de date.'));
   };
-  return (
-<div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-  <MyNav />
-
-  <div style={{ flex: 1, backgroundColor: "white" }} className='mt-5' >
+  return(
     <Container>
-      <Row className="justify-content-center mt-5"> 
+      <Row className="justify-content-center mt-5 pt-5"> 
         <Col lg={8} md={10} sm={12} className='p-5 border shadow rounded'>
           <div className="text-start">
             <h2>Întrebarea {currentQuestionIndex + 1} / {questions.length}</h2>
@@ -247,10 +241,5 @@ export default function Questionnaire() {
         </Col>
       </Row>
     </Container>
-  </div>
-
-  <Footer />
-</div>
-
   );
 }

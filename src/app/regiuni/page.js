@@ -2,11 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Accordion, Container, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyNav from '@/components/Nav';
-import Footer from '@/components/Footer';
 import OraseAccordion from '@/components/OraseAccordion';
-
-// ... (your imports)
 
 function RegiuniPage() {
   const [regiuni, setRegiuni] = useState([]);
@@ -39,49 +35,34 @@ function RegiuniPage() {
   ));
 
   return (
-    <div>
-      <MyNav />
-      <main
-        style={{
-          paddingTop: '0px',
-          position: 'relative',
-          zIndex: '1',
-          backgroundColor: 'white',
-          marginBottom: '140px',
-          paddingBottom: '10px',
-        }}
-      >
-        <Container fluid="lg">
-          <h1 className="page-header display-3">Regiuni</h1>
-          <hr></hr>
-          <Accordion className="mb-1">
-            {loading ? (
-              // Show placeholder accordion while loading
-              placeholderItems
-            ) : (
-              // Show actual accordion when data is loaded
-              regiuni.map((regiune, index) => (
-                <Accordion.Item key={index} eventKey={index.toString()}>
-                  <Accordion.Header onClick={() => handleAccordionClick(regiune.id)}>
-                    <h5>{regiune.nume}</h5>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    {activeRegiuneId === regiune.id && (
-                      <>
-                        <h5 className="text-body-secondary">Orașe:</h5>
-                        <OraseAccordion regiuneId={regiune.id} regiuneNume={regiune.nume} />
-                      </>
-                    )}
-                  </Accordion.Body>
-                </Accordion.Item>
-              ))
-            )}
-          </Accordion>
-          <hr></hr>
-        </Container>
-      </main>
-      <Footer />
-    </div>
+    <Container fluid="lg">
+      <h1 className="page-header display-3">Regiuni</h1>
+      <hr></hr>
+      <Accordion className="mb-1">
+        {loading ? (
+          // Show placeholder accordion while loading
+          placeholderItems
+        ) : (
+          // Show actual accordion when data is loaded
+          regiuni.map((regiune, index) => (
+            <Accordion.Item key={index} eventKey={index.toString()}>
+              <Accordion.Header onClick={() => handleAccordionClick(regiune.id)}>
+                <h5>{regiune.nume}</h5>
+              </Accordion.Header>
+              <Accordion.Body>
+                {activeRegiuneId === regiune.id && (
+                  <>
+                    <h5 className="text-body-secondary">Orașe:</h5>
+                    <OraseAccordion regiuneId={regiune.id} regiuneNume={regiune.nume} />
+                  </>
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))
+        )}
+      </Accordion>
+      <hr></hr>
+    </Container>
   );
 }
 

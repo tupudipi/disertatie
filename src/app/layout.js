@@ -1,4 +1,6 @@
 import './globals.css'
+import MyNav from '@/components/Nav';
+import Footer from '@/components/Footer';
 
 
 export const metadata = {
@@ -10,8 +12,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
-        </body>
+        <div>
+          <MyNav />
+          <main style={{
+            paddingTop: '0px',
+            position: 'relative',
+            zIndex: '1',
+            marginBottom: '140px',
+            backgroundColor: 'white',
+          }}>
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </body>
     </html>
   )
 }
