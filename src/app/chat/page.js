@@ -46,7 +46,7 @@ function Chat() {
         console.log("user ", currentUser?.email, " results: ", quizResults);
       
         if (currentUser && quizResults) {
-          message = `Utilizatorul ${currentUser.email} a parcurs deja chestionarul si a primit recomandarile: ${JSON.stringify(quizResults)}. start`;
+          message = `Recomandările utilizatorului ${currentUser.email}: ${JSON.stringify(quizResults)}. start`;
         }
       
         const res = await fetch('/api/chat', {
