@@ -11,8 +11,8 @@ const MyNav = () => {
   return (
     <Navbar bg="light" expand="lg" className="sticky-top">
       <Container fluid>
-        <Navbar.Brand href="#">
-          <Image src="/images/icon.png" alt="icon" width={35} height={35} />
+        <Navbar.Brand as={Link} href="/">
+          <Image className='pe-none' src="/images/icon.png" alt="icon" width={35} height={35} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" >
