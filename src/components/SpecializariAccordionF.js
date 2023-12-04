@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Spinner } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 
 function SpecializariAccordionF({ facultateId }) {
   const [specializari, setSpecializari] = useState([]);
@@ -73,32 +74,32 @@ function SpecializariAccordionF({ facultateId }) {
               <Row>
                 <Col lg={3} className="my-auto">
                   <h5 className="card-title">
-                    <a
+                    <Link
                       className="text-decoration-none w-100"
                       href={`/specializare/${specializare.id}`}
                     >
                       <small>Specializarea<br /></small> {specializare.nume}
-                    </a>
+                    </Link>
                   </h5>
                 </Col>
                 <Col lg={4} className="bg-white">
                   <p className="my-3">
-                    <a
+                    <Link
                       className="text-decoration-none w-100"
                       href={`/domeniu/${specializare.domeniu.id}`}
                     >
                       <i className="bi bi-stop"></i>  Domeniul {specializare.domeniu.nume}
-                    </a>
+                    </Link>
                   </p>
                 </Col>
                 <Col lg={4} className="bg-white">
                   <p className="my-3">
-                    <a
+                    <Link
                       className="text-decoration-none w-100"
                       href={`/ramura/${specializare.ramura.id}`}
                     >
                       <i className="bi bi-diagram-3"></i> Ramura {specializare.ramura.nume}
-                    </a>
+                    </Link>
                   </p>
                 </Col>
               </Row>

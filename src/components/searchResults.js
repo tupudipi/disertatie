@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Pagination, InputGroup, FormControl, Spinner } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Link from 'next/link';
 
 
 const SearchResults = ({
@@ -115,43 +116,43 @@ const SearchResults = ({
               <Row>
                 <Col lg={3} className="my-auto">
                   <Card.Title>
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                     <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </Card.Title>
                 </Col>
                 <Col lg={4} className="bg-white">
                   <p className="mt-5 mb-0">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-stop"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                   <p className="mb-4">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-diagram-3"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                 </Col>
                 <Col lg={5} className="bg-white">
                   <p className="my-2">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-geo-alt"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                   <p className="mb-2">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-building"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                   <p className="mb-2">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-house"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                   <p className="mb-2">
-                    <a href='' className="text-decoration-none w-100">
+                    <Link href='' className="text-decoration-none w-100">
                       <i className="bi bi-award"></i> <Spinner size="sm" animation="border" className='text-primary'/>
-                    </a>
+                    </Link> 
                   </p>
                 </Col>
               </Row>
@@ -170,43 +171,43 @@ const SearchResults = ({
                         <Row>
                           <Col lg={3} className="my-auto">
                             <Card.Title>
-                              <a href={`/specializare/${result["id_s"]}`} className="text-decoration-none w-100">
+                              <Link href={`/specializare/${result["id_s"]}`} className="text-decoration-none w-100">
                                 {result.specializare}
-                              </a>
+                              </Link> 
                             </Card.Title>
                           </Col>
                           <Col lg={4} className="bg-white">
                             <p className="mt-5 mb-0">
-                              <a href={`/domeniu/${result["id_d"]}`} className="text-decoration-none w-100">
+                              <Link href={`/domeniu/${result["id_d"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-stop"></i> Domeniul {result.domeniu}
-                              </a>
+                              </Link> 
                             </p>
                             <p className="mb-4">
-                              <a href={`/ramura/${result["id_ra"]}`} className="text-decoration-none w-100">
+                              <Link href={`/ramura/${result["id_ra"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-diagram-3"></i> Ramura {result.ramura}
-                              </a>
+                              </Link> 
                             </p>
                           </Col>
                           <Col lg={5} className="bg-white">
                             <p className="my-2">
-                              <a href={`/regiune/${result["id_re"]}`} className="text-decoration-none w-100">
+                              <Link href={`/regiune/${result["id_re"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-geo-alt"></i> {result.regiune}
-                              </a>
+                              </Link> 
                             </p>
                             <p className="mb-2">
-                              <a href={`/oras/${result["id_o"]}`} className="text-decoration-none w-100">
+                              <Link href={`/oras/${result["id_o"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-building"></i> {result.oras}
-                              </a>
+                              </Link> 
                             </p>
                             <p className="mb-2">
-                              <a href={`/universitate/${result["id_u"]}`} className="text-decoration-none w-100">
+                              <Link href={`/universitate/${result["id_u"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-house"></i> {result.universitate}
-                              </a>
+                              </Link> 
                             </p>
                             <p className="mb-2">
-                              <a href={`/facultate/${result["id_f"]}`} className="text-decoration-none w-100">
+                              <Link href={`/facultate/${result["id_f"]}`} className="text-decoration-none w-100">
                                 <i className="bi bi-award"></i> {result.facultate}
-                              </a>
+                              </Link> 
                             </p>
                           </Col>
                         </Row>

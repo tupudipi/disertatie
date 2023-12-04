@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import SpecializariAccordionF from '@/components/SpecializariAccordionF';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 
 function FacultatePage({ params }) {
   const [facultate, setFacultate] = useState({});
@@ -47,18 +48,18 @@ function FacultatePage({ params }) {
       <h1 className='page-header display-3'>{facultate.nume}</h1>
       <h4>
         <small className="text-muted">
-          <a className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
+          <Link className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
             <i className="bi bi-house"></i> {universitate.nume}
-          </a>
+          </Link>
         </small>
       </h4>
       <hr />
       <div className="row">
         <div className="col">
           <h5 className="mb-4">
-            <a className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
+            <Link className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
               <i className="bi bi-building"></i> {oras.nume}
-            </a>
+            </Link>
           </h5>
         </div>
       </div>

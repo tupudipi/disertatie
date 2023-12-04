@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import CommentSection from '@/components/CommentSection';
 import { AuthenticationProvider } from '@/components/context/AuthContext';
+import Link from 'next/link';
 
 
 function SpecializarePage({ params }) {
@@ -97,40 +98,40 @@ function SpecializarePage({ params }) {
         </h1>
         <h4>
           <small className="text-muted">
-            <a className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
+            <Link  className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
               <i className="bi bi-award"></i> {facultate.nume}
-            </a>
+            </Link>  
           </small><br />
           <small className="text-muted">
-            <a className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
+            <Link  className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
               <i className="bi bi-house"></i> {universitate.nume}
-            </a>
+            </Link>  
           </small>
         </h4>
         <hr />
         <div className="row">
           <div className="col text-center">
             <h5 className="mt-4 mb-2">
-              <a className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
+              <Link  className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
                 <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
-              </a>
+              </Link>  
             </h5>
             <h5 className="mb-4">
-              <a className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
+              <Link  className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
                 <i className="bi bi-diagram-3"></i> Ramura {ramura.nume}
-              </a>
+              </Link>  
             </h5>
           </div>
           <div className="col text-center">
             <h5 className="mt-4 mb-2">
-              <a className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
+              <Link  className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
                 <i className="bi bi-geo-alt"></i> {regiune.nume}
-              </a>
+              </Link>  
             </h5>
             <h5 className="mb-4">
-              <a className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
+              <Link  className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
                 <i className="bi bi-building"></i> {oras.nume}
-              </a>
+              </Link>  
             </h5>
           </div>
         </div>

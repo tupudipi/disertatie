@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SpecializariAccordion from '@/components/SpecializariAccordion';
+import Link from 'next/link';
 
 function RamuraPage({ params }) {
     const [ramura, setRamura] = useState({});
@@ -35,9 +36,9 @@ function RamuraPage({ params }) {
         <Container fluid="lg">
             <h1 className='page-header display-3'><small className="text-muted">Ramura</small> {ramura.nume}</h1>
             <h5>
-                <a className='text-decoration-none w-100' href={`/domeniu/${ramura.id_domeniu}`}>
+                <Link className='text-decoration-none w-100' href={`/domeniu/${ramura.id_domeniu}`}>
                     <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
-                </a>
+                </Link>
             </h5>
             <hr />
             <br />

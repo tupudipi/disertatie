@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Row, Col, Spinner } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import Link from 'next/link';
 
 function SpecializareItem({ specializare }) {
     const [data, setData] = useState();
@@ -75,48 +76,48 @@ function SpecializareItem({ specializare }) {
                 <Row>
                     <Col lg={4} className="my-auto">
                         <h5 className="card-title">
-                            <a
+                            <Link
                                 className="text-decoration-none w-100"
                                 href={`/specializare/${data.specializare.id}`}
                             >
                                 <small>Specializarea<br /></small> {data.specializare.nume}
-                            </a>
+                            </Link>
                         </h5>
                     </Col>
                     <Col lg={4} className="bg-white">
                         <p className="card-title">
-                            <a
+                            <Link
                                 className="text-decoration-none w-100"
                                 href={`/regiune/${data.regiune.id}`}
                             >
                                 <i className="bi bi-geo-alt"></i> {data.regiune.nume}
-                            </a>
+                            </Link>
                         </p>
                         <p className="my-3">
-                            <a
+                            <Link
                                 className="text-decoration-none w-100"
                                 href={`/oras/${data.oras.id}`}
                             >
                                 <i className="bi bi-building"></i>  {data.oras.nume}
-                            </a>
+                            </Link>
                         </p>
                     </Col>
                     <Col lg={4} className="bg-white">
                         <p className="card-title">
-                            <a
+                            <Link
                                 className="text-decoration-none w-100"
                                 href={`/universitate/${data.universitate.id}`}
                             >
                                 <i className="bi bi-house"></i> {data.universitate.nume}
-                            </a>
+                            </Link>
                         </p>
                         <p className="my-3">
-                            <a
+                            <Link
                                 className="text-decoration-none w-100"
                                 href={`/facultate/${data.facultate.id}`}
                             >
                                 <i className="bi bi-award"></i> {data.facultate.nume}
-                            </a>
+                            </Link>
                         </p>
                     </Col>
                 </Row>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UniversitatiAccordion from '@/components/UniversitatiAccordion';
+import Link from 'next/link';
 
 function OrasPage({ params }) {
   const [oras, setOras] = useState({});
@@ -35,9 +36,9 @@ function OrasPage({ params }) {
       <h1 className='page-header display-3'><small className="text-muted">Orașul </small>{oras.nume}</h1>
       <h4>
         <small className="text-muted">
-          <a className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
+          <Link className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
             <i className="bi bi-geo-alt"></i> {regiune.nume}
-          </a>
+          </Link>
         </small>
       </h4>
       <hr />
