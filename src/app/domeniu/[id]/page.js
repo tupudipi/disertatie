@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function DomeniuPage({ params }) {
   const [domeniu, setDomeniu] = useState({});
-  console.log("params.id:", params.id);
+  //console.log("params.id:", params.id);
 
   useEffect(() => {
     // Fetch domeniu

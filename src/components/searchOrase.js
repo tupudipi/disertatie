@@ -13,7 +13,7 @@ export default function OraseFilter({ selectedRegiuni, selectedOrase, setSelecte
 
     const handleCheck = (event) => {
         const { value, checked } = event.target;
-        console.log("Checked value: ", Number(value), " Checked status: ", checked);
+        //console.log("Checked value: ", Number(value), " Checked status: ", checked);
         if (checked) {
             setSelectedOrase(prevSelected => [...prevSelected, Number(value)]);
         }

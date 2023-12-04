@@ -14,7 +14,7 @@ export default function RamuriFilter({ selectedDomenii, selectedRamuri, setSelec
 
     const handleCheck = (event) => {
         const { value, checked } = event.target;
-        console.log("Checked value: ", Number(value), " Checked status: ", checked);
+        //console.log("Checked value: ", Number(value), " Checked status: ", checked);
         if (checked) {
             setSelectedRamuri(prevSelected => [...prevSelected, Number(value)]);
         }

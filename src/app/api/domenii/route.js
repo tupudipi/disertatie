@@ -22,12 +22,12 @@ export const GET = async (req) => {
   const pool = getPool();
 
   try {
-    console.log("Request received for /api/domenii");
+    //console.log("Request received for /api/domenii");
     const result = await pool.query('SELECT * FROM domeniistudiu');
-    console.log("Query result:", result.rows);
+    //console.log("Query result:", result.rows);
     return NextResponse.json(result.rows);
   } catch (error) {
-    console.error("Error in /api/domenii:", error);
+    //console.error("Error in /api/domenii:", error);
     return NextResponse.error({ message: 'Internal server error' });
   }
 }

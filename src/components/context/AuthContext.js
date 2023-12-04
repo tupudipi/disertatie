@@ -33,10 +33,10 @@ export function AuthenticationProvider({ children }) {
   async function deleteUserFirebase(user) {
     return deleteUser(user)
       .then(() => {
-        console.log("Successfully deleted user");
+        //console.log("Successfully deleted user");
       })
       .catch((error) => {
-        console.log("Error deleting user:", error);
+        //console.log("Error deleting user:", error);
       });
   }
 

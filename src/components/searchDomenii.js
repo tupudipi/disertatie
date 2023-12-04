@@ -13,7 +13,7 @@ export default function DomeniiFilter({ selectedDomenii, setSelectedDomenii }) {
 
   const handleCheck = (event) => {
     const { value, checked } = event.target;
-    console.log("Checked value: ", Number(value), " Checked status: ", checked);
+    //console.log("Checked value: ", Number(value), " Checked status: ", checked);
     if (checked) {
         setSelectedDomenii(prevSelected => [...prevSelected, Number(value)]);
     } else {

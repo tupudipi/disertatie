@@ -13,7 +13,7 @@ export default function FacultatiFilter({selectedUniversitati, selectedFacultati
 
     const handleCheck = (event) => {
         const { value, checked } = event.target;
-        console.log("Checked value: ", Number(value), " Checked status: ", checked);
+        //("Checked value: ", Number(value), " Checked status: ", checked);
         if (checked) {
             setSelectedFacultati(prevSelected => [...prevSelected, Number(value)]);
         }

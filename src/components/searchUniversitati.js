@@ -14,7 +14,7 @@ export default function UniversitatiFilter({ selectedUniversitati, setSelectedUn
 
     const handleCheck = (event) => {
         const { value, checked } = event.target;
-        console.log("Checked value: ", Number(value), " Checked status: ", checked);
+        //console.log("Checked value: ", Number(value), " Checked status: ", checked);
         if (checked) {
             setSelectedUniversitati(prevSelected => [...prevSelected, Number(value)]);
         }

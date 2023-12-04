@@ -40,7 +40,7 @@ function Chat() {
         setIsLoading(true);
 
         let message = 'start';
-        console.log("user ", currentUser?.email, " results: ", quizResults);
+        //console.log("user ", currentUser?.email, " results: ", quizResults);
 
         if (currentUser && quizResults) {
             message = `Recomandările primite de utilizatorul ${currentUser.email} după parcurgerea chestionarului: ${JSON.stringify(quizResults)}. start`;
