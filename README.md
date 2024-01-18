@@ -35,7 +35,7 @@ Users can chat with a digital educational counselor powered by AI through the us
 
 
 ### 'Easy' Search
-Users can search through all bachelor programs in two ways: either by starting from a domain of study, or from a region. This is to provide options for all users, whether they know the field they are passionate about and want to find out where they can study that particular field, or the region they want to study in and want to find out what exactly is available there:
+Users can search through all bachelor programs in two ways: either by starting from a domain of study, or from a region. This is to provide options for all users, whether they know the field they are passionate about and want to find out where they can study that particular field, or they know the region they want to go to and want to find out what study programs are available in that particular location:
    
   ![domenii open ppt](https://github.com/tupudipi/disertatie/assets/57905839/3891b2fc-37a0-4871-965c-4ec50d5923fe)
   ![regiuni open ppt](https://github.com/tupudipi/disertatie/assets/57905839/26138d92-3e74-444e-a0f2-b0e30090b262)
