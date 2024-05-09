@@ -21,7 +21,7 @@ export default function HomePage() {
                     </Col>
                     <Col lg className="text-center my-auto">
                         <h3 className="p-3 display-6">Cauți un program de studii de licență potrivit exact preferințelor tale?</h3>
-                        <h3 className="p-3 display-5 font-weight-bold">Ai ajuns unde trebuie!</h3>
+                        <h3 className="p-3 display-5 font-weight-bold">Ai ajuns unde trebuie! salut</h3>
                     </Col>
                 </Row>
             </Container>
