@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useContext, useEffect, useState } from "react";
 import app from "@/app/firebase";
 import {

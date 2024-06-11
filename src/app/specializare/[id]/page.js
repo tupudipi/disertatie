@@ -1,5 +1,3 @@
-'use client'
-import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -7,87 +5,41 @@ import CommentSection from '@/components/CommentSection';
 import { AuthenticationProvider } from '@/components/context/AuthContext';
 import Link from 'next/link';
 
+// Define an async function to fetch data on the server
+async function fetchData(id) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const specializare = await fetch(`${baseUrl}/api/specializari/${id}`).then(res => res.json());
 
-function SpecializarePage({ params }) {
-  const [specializare, setSpecializare] = useState({});
-  const [facultate, setFacultate] = useState({});
-  const [universitate, setUniversitate] = useState({});
-  const [ramura, setRamura] = useState({});
-  const [domeniu, setDomeniu] = useState({});
-  const [oras, setOras] = useState({});
-  const [regiune, setRegiune] = useState({});
+  const facultate = specializare.id_facultate
+    ? await fetch(`${baseUrl}/api/facultati/${specializare.id_facultate}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    // Fetch specializare
-    if (params.id) {
-      fetch(`/api/specializari/${params.id}`)
-        .then(response => response.json())
-        .then(data => {
-          setSpecializare(data);
-        });
-    }
-  }, [params.id]);
+  const universitate = facultate.id_universitate
+    ? await fetch(`${baseUrl}/api/universitati/${facultate.id_universitate}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    if (specializare.id_facultate) {
-      fetch(`/api/facultati/${specializare.id_facultate}`)
-        .then(response => response.json())
-        .then(data => {
-          setFacultate(data);
-        });
-    }
-  }, [specializare.id_facultate]);
+  const ramura = specializare.id_ramura
+    ? await fetch(`${baseUrl}/api/ramuri/${specializare.id_ramura}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    if (facultate.id_universitate) {
-      fetch(`/api/universitati/${facultate.id_universitate}`)
-        .then(response => response.json())
-        .then(data => {
-          setUniversitate(data);
-        });
-    }
-  }, [facultate.id_universitate]);
+  const domeniu = ramura.id_domeniu
+    ? await fetch(`${baseUrl}/api/domenii/${ramura.id_domeniu}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    if (specializare.id_ramura) {
-      fetch(`/api/ramuri/${specializare.id_ramura}`)
-        .then(response => response.json())
-        .then(data => {
-          setRamura(data);
-        });
-    }
-  }, [specializare.id_ramura]);
+  const oras = facultate.id_oras
+    ? await fetch(`${baseUrl}/api/orase/${facultate.id_oras}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    if (ramura.id_domeniu) {
-      fetch(`/api/domenii/${ramura.id_domeniu}`)
-        .then(response => response.json())
-        .then(data => {
-          setDomeniu(data);
-        });
-    }
-  }, [ramura.id_domeniu]);
+  const regiune = oras.id_regiune
+    ? await fetch(`${baseUrl}/api/regiuni/${oras.id_regiune}`).then(res => res.json())
+    : {};
 
-  useEffect(() => {
-    if (facultate.id_oras) {
-      fetch(`/api/orase/${facultate.id_oras}`)
-        .then(response => response.json())
-        .then(data => {
-          setOras(data);
-        });
-    }
-  }, [facultate.id_oras]);
+  return { specializare, facultate, universitate, ramura, domeniu, oras, regiune };
+}
 
-  useEffect(() => {
-    if (oras.id_regiune) {
-      fetch(`/api/regiuni/${oras.id_regiune}`)
-        .then(response => response.json())
-        .then(data => {
-          setRegiune(data);
-        });
-    }
-  }, [oras.id_regiune]);
-
+// Server component
+export default async function SpecializarePage({ params }) {
+  const { specializare, facultate, universitate, ramura, domeniu, oras, regiune } = await fetchData(params.id);
 
   return (
     <>
@@ -98,40 +50,40 @@ function SpecializarePage({ params }) {
         </h1>
         <h4>
           <small className="text-muted">
-            <Link  className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
+            <Link className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
               <i className="bi bi-award"></i> {facultate.nume}
-            </Link>  
+            </Link>
           </small><br />
           <small className="text-muted">
-            <Link  className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
+            <Link className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
               <i className="bi bi-house"></i> {universitate.nume}
-            </Link>  
+            </Link>
           </small>
         </h4>
         <hr />
         <div className="row">
           <div className="col text-center">
             <h5 className="mt-4 mb-2">
-              <Link  className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
+              <Link className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
                 <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
-              </Link>  
+              </Link>
             </h5>
             <h5 className="mb-4">
-              <Link  className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
+              <Link className="text-decoration-none w-100" href={`/ramura/${specializare.id_ramura}`}>
                 <i className="bi bi-diagram-3"></i> Ramura {ramura.nume}
-              </Link>  
+              </Link>
             </h5>
           </div>
           <div className="col text-center">
             <h5 className="mt-4 mb-2">
-              <Link  className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
+              <Link className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
                 <i className="bi bi-geo-alt"></i> {regiune.nume}
-              </Link>  
+              </Link>
             </h5>
             <h5 className="mb-4">
-              <Link  className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
+              <Link className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
                 <i className="bi bi-building"></i> {oras.nume}
-              </Link>  
+              </Link>
             </h5>
           </div>
         </div>
@@ -143,8 +95,5 @@ function SpecializarePage({ params }) {
         </AuthenticationProvider>
       </Container>
     </>
-
   );
 }
-
-export default SpecializarePage;
