@@ -223,7 +223,7 @@ export default function Questionnaire() {
   };
   return(
     <Container>
-      <Row className="justify-content-center mt-5 pt-5"> 
+      <Row className="justify-content-center mt-5 pt-2 pb-5"> 
         <Col lg={8} md={10} sm={12} className='p-5 border shadow rounded'>
           <div className="text-start">
             <h2>Întrebarea {currentQuestionIndex + 1} / {questions.length}</h2>

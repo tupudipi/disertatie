@@ -8,16 +8,16 @@ export const GET = async (req, { params }) => {
 
   try {
     const { rows, fields } = await pool.query(
-      "SELECT * FROM quizresults WHERE email = $1",
+      "SELECT * FROM comments WHERE author = $1",
       [email]
     );
 
     if (rows.length > 0) {
-      return NextResponse.json(rows[0]);
+      return NextResponse.json(rows);
     } else {
       return NextResponse.error({
         status: 404,
-        message: "No quiz results found for this email",
+        message: "No comments found for this email",
       });
     }
   } catch (error) {

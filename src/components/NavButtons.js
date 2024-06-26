@@ -3,6 +3,7 @@ import RegistrationModal from './RegisterModal';
 import LoginModal from './LoginModal';
 import { Button } from 'react-bootstrap';
 import { useAuthentication } from './context/AuthContext';
+import Link from 'next/link';
 
 const NavButtons = () => {
     const { currentUser, login, logout } = useAuthentication();
@@ -17,15 +18,17 @@ const NavButtons = () => {
             <div className="d-flex">
                 <div className="mx-2">
                     {currentUser ?
-                        <Button variant="outline-primary" className="rounded-pill border-2" disabled>
-                            {currentUser.email}
-                        </Button> :
+                        <Link href="/profile">
+                            <Button variant="outline-primary" className="rounded-pill border-2">
+                                {currentUser.email}
+                            </Button>
+                        </Link> :
                         <LoginModal />
                     }
                 </div>
                 <div className="mx-2">
                     {currentUser ?
-                        <Button variant="outline-danger" className="rounded-pill border-2" onClick={ handleLogout }>
+                        <Button variant="outline-danger" className="rounded-pill border-2" onClick={handleLogout}>
                             Logout
                         </Button> :
                         <RegistrationModal />
