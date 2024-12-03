@@ -44,26 +44,36 @@ export default async function SpecializarePage({ params }) {
   return (
     <>
       <Container fluid="lg">
-        <h1 className='page-header display-3'>
+        <h1 className='page-header display-3 mb-4'>
           <small className="text-muted">Specializarea </small>
-          {specializare.nume}
+          <b>{specializare.nume}</b>
         </h1>
-        <h4>
-          <small className="text-muted">
-            <Link className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
-              <i className="bi bi-award"></i> {facultate.nume}
-            </Link>
-          </small><br />
-          <small className="text-muted">
-            <Link className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
-              <i className="bi bi-house"></i> {universitate.nume}
-            </Link>
-          </small>
-        </h4>
-        <hr />
+
         <div className="row">
-          <div className="col text-center">
-            <h5 className="mt-4 mb-2">
+          {/* First column - Faculty & University */}
+          <div className="col-12 col-lg-4">
+            <h4>
+              <small className="text-muted">
+                <Link className="text-decoration-none w-100" href={`/facultate/${specializare.id_facultate}`}>
+                  <i className="bi bi-award"></i> {facultate.nume}
+                </Link>
+              </small><br />
+              <small className="text-muted">
+                <Link className="text-decoration-none w-100" href={`/universitate/${facultate.id_universitate}`}>
+                  <i className="bi bi-house"></i> {universitate.nume}
+                </Link>
+              </small>
+            </h4>
+          </div>
+
+          {/* Add separator for mobile only */}
+          <div className="col-12 d-lg-none">
+            <hr className="my-2" />
+          </div>
+
+          {/* Second column - Domain & Branch */}
+          <div className="col-12 col-lg-4 ">
+            <h5 className="mb-2">
               <Link className="text-decoration-none w-100" href={`/domeniu/${ramura.id_domeniu}`}>
                 <i className="bi bi-stop"></i> Domeniul {domeniu.nume}
               </Link>
@@ -74,13 +84,15 @@ export default async function SpecializarePage({ params }) {
               </Link>
             </h5>
           </div>
-          <div className="col text-center">
-            <h5 className="mt-4 mb-2">
+
+          {/* Third column - Region & City */}
+          <div className="col-12 col-lg-4 ">
+            <h5 className="mb-2">
               <Link className="text-decoration-none w-100" href={`/regiune/${oras.id_regiune}`}>
                 <i className="bi bi-geo-alt"></i> {regiune.nume}
               </Link>
             </h5>
-            <h5 className="mb-4">
+            <h5 className="mb-2">
               <Link className="text-decoration-none w-100" href={`/oras/${facultate.id_oras}`}>
                 <i className="bi bi-building"></i> {oras.nume}
               </Link>

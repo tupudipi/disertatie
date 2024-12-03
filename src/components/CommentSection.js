@@ -164,16 +164,18 @@ const CommentSection = ({ pageId }) => {
             </div>
 
             {/* Comments list */}
-            {comments.length > 0 ? (
-                <div>
-                    <h5 className='mt-3'>Ce spun ceilalți:</h5>
-                    {comments.map(comment => (
-                        <Comment key={comment.id} comment={comment} onReplySubmit={handleReplySubmit} />
-                    ))}
-                </div>
-            ) : (
-                <p>Se pare că până acum nimeni nu a spus nimic despre această specializare. Fii tu primul și lasă o părere sau o întrebare!</p>
-            )}
+            <div className='py-3'>
+                {comments.length > 0 ? (
+                    <>
+                        <h5>Ce spun ceilalți:</h5>
+                        {comments.map(comment => (
+                            <Comment key={comment.id} comment={comment} onReplySubmit={handleReplySubmit} />
+                        ))}
+                    </>
+                ) : (
+                    <p>Se pare că până acum nimeni nu a spus nimic despre această specializare. Fii tu primul și lasă o părere sau o întrebare!</p>
+                )}
+            </div>
         </div>
     );
 }
